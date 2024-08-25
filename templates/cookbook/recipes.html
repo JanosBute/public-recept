@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Receptek
+{% endblock title %}
+
+{% block content %}
+<h1>Receptek</h1>
+
+{% for recipe in recipes %}
+    <article>
+        <h2>{{ recipe.name}}</h2>
+        <p>{{recipe.ingredients}}</p>
+        <p>{{recipe.description}}</p>
+        <p>Feltöltötte: {{recipe.author}}</p>
+    </article>
+{% endfor %}
+
+{% endblock content %}

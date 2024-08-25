@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Új Recept
+{% endblock title %}
+
+{% block content %}
+<h1>Új recept:</h1>
+<form action="{% url "cookbook:new-recipe" %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Recept hozzáadása</button>
+</form>
+{% endblock content %}

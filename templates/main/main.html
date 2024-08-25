@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Főoldal
+{% endblock title %}
+
+{% block content %}
+<p> 
+    {% if user.is_authenticated %}
+    Üdvözöljük, {{ user.username }}!
+    {% else %}
+    Üdvözöljük!
+    <p><a href="{% url "users:login" %}">Belépés</a></p>
+    {% endif %}
+</p>
+{% endblock content %}

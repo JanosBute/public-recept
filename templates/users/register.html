@@ -1,0 +1,32 @@
+
+{% extends "layout.html" %}
+
+
+{% block title %}
+Regisztráció
+{% endblock title %}
+
+{% block content %}
+
+{% if form.errors %}
+<h3>Hibás regisztráció.</h3>
+{% endif %}
+
+<p>Új felhasználó regisztrálása.</p>
+<form action="{% url "users:register" %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Regisztrál</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}  
+            <script>alert("{{ message }}")</script> 
+        {% endif %}
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock content %}

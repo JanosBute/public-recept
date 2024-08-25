@@ -1,0 +1,23 @@
+nav{
+    background-color: darkslateblue;
+    overflow: hidden
+}
+
+nav a{
+    float: left;
+    color: antiquewhite;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+nav a:hover{
+    background-color: thistle;
+    color: darkslategray;
+}
+
+nav a.active{
+    background-color: cadetblue;
+    color: chocolate;
+}

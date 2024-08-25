@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+Belépés
+{% endblock title %}
+
+{% block content %}
+<h1>Belépés</h1>
+<form action="{% url "users:login" %}" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Belépés">
+</form>    
+
+
+
+{% endblock content %} 
