@@ -9,6 +9,9 @@ Főoldal
 <p> 
     {% if user.is_authenticated %}
     Üdvözöljük, {{ user.username }}!
+<div>
+    <a href="http://127.0.0.1:8000/api/recipe/">Nézzük milyen receptek vannak!</a>
+</div>
     {% else %}
     Üdvözöljük!
     <p><a href="{% url "users:login" %}">Belépés</a></p>

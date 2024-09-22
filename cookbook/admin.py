@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(Recipies)
-admin.site.register(QuantityOfIngredient)
+admin.site.register(Recipe)
 admin.site.register(Unit)
-admin.site.register(Ingredients)
+admin.site.register(Ingredient)
+admin.site.register(RecipeIngredient)
