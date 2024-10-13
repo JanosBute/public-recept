@@ -14,7 +14,7 @@ const RecipeList = () => {
         
     return (
         <section>
-        { Array.isArray(recipe) ? recipe.map(recipe => <RecipeCard key={recipe.id} {...recipe} />) : <p>No recipes found.</p>}
+        { Array.isArray(recipe) ? recipe.map(recipe => <RecipeCard key={recipe.id} {...recipe} />) : <p>Nem találtunk recepteket.</p>}
         </section>
   )
 }

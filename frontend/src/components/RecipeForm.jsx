@@ -1,141 +1,214 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import Cookies from 'js-cookie';
 
-// CSRF token cookie értékének kiolvasására
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          // Ellenőrizd, hogy ez-e a megfelelő cookie
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-          }
-      }
-  }
-  return cookieValue;
-}
-
-const csrfToken = getCookie('csrftoken');
+const getCSRFToken = () => {
+  return Cookies.get('csrftoken'); // Django által generált 'csrftoken' süti
+};
 
 const RecipeForm = () => {
   const [recipeData, setRecipeData] = useState({
+    name: "",
+    description: "",
+    ingredients: [],
+    preparation: "",
     image: null,
-    name: '',
-    description: '',
-    ingredients: [{ name: '', quantity: '', unit: '' }],
   });
 
-    // Kép feltöltésének kezelése
-    const handleImageChange = (e) => {
-      setRecipeData({ ...recipeData, image: e.target.files[0] });
-    };
+  const [ingredientName, setIngredientName] = useState("");
+  const [allIngredients, setAllIngredients] = useState([]);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
 
-  // Hozzávalók kezelésének kezelése
-  const handleIngredientChange = (index, e) => {
-    const { name, value } = e.target;
-    const newIngredients = [...recipeData.ingredients];
-    newIngredients[index][name] = value;
-    setRecipeData({ ...recipeData, ingredients: newIngredients });
+  // Meglévő összetevők lekérése az API-ból
+  useEffect(() => {
+    fetch("/cookbook/ingredients/")
+      .then((response) => response.json())
+      .then((data) => setAllIngredients(data))
+      .catch((error) => console.error("Hiba az összetevők lekérdezésében:", error));
+  }, []);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setRecipeData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  // Új hozzávaló hozzáadása
-  const addIngredient = () => {
-    setRecipeData({
-      ...recipeData,
-      ingredients: [...recipeData.ingredients, { name: '', quantity: '', unit: '' }],
-    });
+  const handleImageChange = (event) => {
+    setRecipeData((prevState) => ({
+      ...prevState,
+      image: event.target.files[0],
+    }));
   };
 
-  // Hozzávaló eltávolítása
-  const removeIngredient = (index) => {
-    const newIngredients = [...recipeData.ingredients];
-    newIngredients.splice(index, 1);
-    setRecipeData({ ...recipeData, ingredients: newIngredients });
-  };
-
-  // Űrlap beküldése
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', recipeData.name);
-    formData.append('description', recipeData.description);
-    formData.append('image', recipeData.image);
-
-    recipeData.ingredients.forEach((ingredient, index) => {
-      formData.append(`ingredients[${index}][name]`, ingredient.name);
-      formData.append(`ingredients[${index}][quantity]`, ingredient.quantity);
-      formData.append(`ingredients[${index}][unit]`, ingredient.unit);
-    });
-
-    try {
-        const response = await axios.post('http://localhost:8000/api/recipe/', formData, {
-        headers: {
-          'X-CSRFToken': csrfToken,  // CSRF token
-          'Content-Type': 'multipart/form-data',
-        },
-        withCredentials: true,  // Ez biztosítja, hogy a cookie-k is elküldésre kerüljenek
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+  // Hozzávaló hozzáadása a kiválasztott összetevők listájához
+const handleAddIngredient = () => {
+  const ingredient = allIngredients.find(
+    (ing) => ing.name.toLowerCase() === ingredientName.toLowerCase()
+  );
+  
+  if (ingredient) {
+    if (!selectedIngredients.some((ing) => ing.id === ingredient.id)) {
+      setSelectedIngredients((prevState) => [...prevState, ingredient]);
+    } else {
+      alert('Ezt az összetevőt már hozzáadtuk!');
     }
-  };
+  } else {
+    // Hozzávaló nem található, ezért létrehozunk egy újat
+    const newIngredient = { name: ingredientName };
+
+    // POST kérés küldése új összetevő létrehozásához
+    fetch("/cookbook/ingredients/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'X-CSRFToken': getCSRFToken() // CSRF token beépítése
+      },
+      body: JSON.stringify(newIngredient),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setSelectedIngredients((prevState) => [...prevState, data]);
+        setAllIngredients((prevState) => [...prevState, data]); // Hozzáadás az "allIngredients" listához is
+      })
+      .catch((error) => console.error("Hiba az új összetevő létrehozásában:", error));
+  }
+
+  setIngredientName(""); // A beviteli mező törlése
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  // Létrehoz egy űrlap adatobjektumot a fájlfeltöltés kezeléséhez
+  const formData = new FormData();
+  formData.append("name", recipeData.name);
+  formData.append("description", recipeData.description);
+  formData.append("preparation", recipeData.preparation);
+  formData.append("image", recipeData.image);
+
+  // Minden egyes összetevő azonosítóját külön-külön csatolja a FormData objektumhoz.
+  selectedIngredients.forEach((ingredient) => {
+    formData.append("ingredients", ingredient.id);
+  });
+
+  fetch("/cookbook/recipes/", {
+    method: "POST",
+    headers: {
+      'X-CSRFToken': getCSRFToken() // Itt küldjük el a CSRF tokent
+    },
+    body: formData,
+  })
+    .then((response) => {
+      // Ellenőrizd, hogy a válasz JSON formátumú-e
+      const contentType = response.headers.get("content-type");
+      if (!response.ok) {
+        if (contentType && contentType.includes("application/json")) {
+          return response.json().then((errorData) => {
+            throw new Error(JSON.stringify(errorData));
+          });
+        } else {
+          return response.text().then((errorText) => {
+            throw new Error(errorText); // Ha nem JSON, adja vissza szövegként
+          });
+        }
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("A recept sikeresen elkészült:", data);
+      // Az űrlap visszaállítása a sikeres elküldés után
+      setRecipeData({
+        name: "",
+        description: "",
+        ingredients: [],
+        preparation: "",
+        image: null,
+      });
+      setSelectedIngredients([]); // A kiválasztott összetevők visszaállítása
+    })
+    .catch((error) => {
+      console.error("Hiba a recept létrehozásában:", error.message);
+    });
+};
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Recipe Name:</label>
-        <input type="text" name="name" value={recipeData.name} onChange={(e) => setRecipeData({ ...recipeData, name: e.target.value })} />
+        <label>Recept neve:</label>
+        <br />
+        <input
+          type="text"
+          name="name"
+          value={recipeData.name}
+          onChange={handleInputChange}
+          required
+        />
       </div>
 
       <div>
-        <label>Description:</label>
-        <textarea name="description" value={recipeData.description} onChange={(e) => setRecipeData({ ...recipeData, description: e.target.value })} />
+        <label>Leírás:</label>
+        <br />
+        <textarea
+          name="description"
+          value={recipeData.description}
+          onChange={handleInputChange}
+          required
+        />
       </div>
 
       <div>
-        <label>Recipe Image:</label>
-        <input type="file" name="image" onChange={handleImageChange} />
+        <label>Elkészítési utasítások:</label>
+        <br />
+        <textarea
+          name="preparation"
+          value={recipeData.preparation}
+          onChange={handleInputChange}
+          required
+        />
       </div>
 
-      <h3>Ingredients</h3>
-      {recipeData.ingredients.map((ingredient, index) => (
-        <div key={index}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Ingredient name"
-            value={ingredient.name}
-            onChange={(e) => handleIngredientChange(index, e)}
-          />
-          <input
-            type="text"
-            name="quantity"
-            placeholder="Quantity"
-            value={ingredient.quantity}
-            onChange={(e) => handleIngredientChange(index, e)}
-          />
-          <input
-            type="text"
-            name="unit"
-            placeholder="Unit"
-            value={ingredient.unit}
-            onChange={(e) => handleIngredientChange(index, e)}
-          />
-          <button type="button" onClick={() => removeIngredient(index)}>
-            Remove
-          </button>
-        </div>
-      ))}
+      <div>
+        <label>Kép:</label>
+        <br />
+        <input type="file" onChange={handleImageChange} />
+      </div>
 
-      <button type="button" onClick={addIngredient}>
-        Add Ingredient
-      </button>
+      <div>
+        <label>Hozzávalók:</label>
+        <br />
+        <input
+          type="text"
+          value={ingredientName}
+          onChange={(e) => setIngredientName(e.target.value)}
+          placeholder="Hozzávaló neve"
+        />
+        <button type="button" onClick={handleAddIngredient}>
+        Hozzávaló hozzáadása
+        </button>
+        
+        {/* Hozzáadott összetevők megjelenítése */}
+        <ul>
+          {selectedIngredients.map((ingredient) => (
+            <li key={ingredient.id}>
+              {ingredient.name}
+              {/* Az összetevő eltávolításának lehetősége */}
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedIngredients((prev) =>
+                    prev.filter((ing) => ing.id !== ingredient.id)
+                  )
+                }
+              >
+                Eltávolítás
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <button type="submit">Submit Recipe</button>
+      <button type="submit">Recept létrehozása</button>
     </form>
   );
 };

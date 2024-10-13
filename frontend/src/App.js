@@ -5,8 +5,8 @@ import RecipeList from './components/RecipeList';
 function App() {
   return (
     <div className="App">
-      <RecipeList/>
       <RecipeForm/>
+      <RecipeList/>
     </div>
   );
 }
