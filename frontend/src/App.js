@@ -1,12 +1,10 @@
 import './App.css';
-import RecipeForm from './components/RecipeForm';
-import RecipeList from './components/RecipeList';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <RecipeForm/>
-      <RecipeList/>
+      <Navbar/>
     </div>
   );
 }

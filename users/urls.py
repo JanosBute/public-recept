@@ -1,13 +1,14 @@
 from django.urls import path
-from . import views
+from .views import *
 
 app_name = "users"
 
 urlpatterns = [
-    path('register/', views.register_page, name="register"),
-    path("login/", views.login_page, name="login"),
-    path("logout/", views.logout_view, name="logout"),
-    path("register_success/", views.register_success_view, name="register-success"),
-    path("logout_success", views.logout_success, name="logout-success")
-    
+    path('register/', register_page, name="register"),
+    path("login/", login_page, name="login"),
+    path("logout/", logout_view, name="logout"),
+    path("register_success/", register_success_view, name="register-success"),
+    path("logout_success", logout_success, name="logout-success"),
+    # API
+    path("api/", UserStatusView.as_view(), name="user-status")
 ]

@@ -3,6 +3,11 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
 
+# API 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
  
 def register_page(request):
@@ -40,3 +45,12 @@ def register_success_view(request):
 
 def logout_success(request):
     return render(request, "users/logout.html")
+
+# API a bejelnetkezési állapot lekérdezéséshez
+
+class UserStatusView(APIView):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return Response({"is_authenticated": True, "username": request.user.username})
+        else:
+            return Response({"is_authenticated": False})
