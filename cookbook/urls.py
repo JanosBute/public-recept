@@ -10,4 +10,5 @@ urlpatterns = [
     path('ingredients/<int:pk>/', IngredientDetailView.as_view(), name='ingredient-detail'),
     path('recipes/', RecipeListCreateView.as_view(), name='recipe-list-create'),
     path('recipes/<int:pk>/', RecipeRetrieveUpdateDestroyView.as_view(), name='recipe-detail'),
+    path('search-recipes/', search_recipes, name='search-recipes'),
 ]

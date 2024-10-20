@@ -4,9 +4,7 @@ const RecipeCard = (props) => {
   return (
     <div>
       <img src={props.image} alt="kép" />
-      <h2>{props.name}</h2>
-      <p>{props.description}</p>
-      
+      <h2>{props.name}</h2>      
       {/* Iterálás az összetevőkön */}
       <h3>Összetevők:</h3>
       <ul>
@@ -14,8 +12,8 @@ const RecipeCard = (props) => {
           <li key={ingredient.id}>{ingredient.name}</li>
         ))}
       </ul>
-      <h3>Elkészítés:</h3>
-      <p>{props.preparation}</p>
+      <h3>Leírás:</h3>
+      <p>{props.description}</p>
     </div>
   );
 };
