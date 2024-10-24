@@ -43,6 +43,11 @@ const RecipeForm = () => {
 
   // Hozzávaló hozzáadása a kiválasztott összetevők listájához
 const handleAddIngredient = () => {
+  if (!ingredientName.trim()) {
+    alert("Az összetevő neve nem lehet üres!");
+    return; // Kilépünk a függvényből, ha üres a mező
+  }
+  
   const ingredient = allIngredients.find(
     (ing) => ing.name.toLowerCase() === ingredientName.toLowerCase()
   );
