@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import RecipeCard from './RecipeCard';
+import SimpleRecipeCard from './SimpleRecipeCard';
 
 const RecipeList = () => {
   
@@ -14,7 +14,7 @@ const RecipeList = () => {
         
     return (
         <section>
-        { Array.isArray(recipe) ? recipe.map(recipe => <RecipeCard key={recipe.id} {...recipe} />) : <p>Nem találtunk recepteket.</p>}
+        { Array.isArray(recipe) ? recipe.map(recipe => <SimpleRecipeCard key={recipe.id} {...recipe} />) : <p>Nem találtunk recepteket.</p>}
         </section>
   )
 }

@@ -3,7 +3,7 @@ import LogoutButton from './LogoutButton';
 import RecipeForm from './RecipeForm';
 import RecipeList from './RecipeList';
 import SearchBar from './SearchBar';
-import RecipeCard from './RecipeCard';
+import SimpleRecipeCard from './RecipeCard';
 
 
 function NavBar() {
@@ -69,7 +69,7 @@ function NavBar() {
           {activeComponent === 'search-results' && (
   <div>
     <h2>Keresési eredmények:</h2>
-    {searchResults.length > 0 ? searchResults.map(recipe => <RecipeCard key={recipe.id} {...recipe} />) : <p>Nem találtunk recepteket.</p>}
+    {searchResults.length > 0 ? searchResults.map(recipe => <SimpleRecipeCard key={recipe.id} {...recipe} />) : <p>Nem találtunk recepteket.</p>}
   </div>
 )}
             </div>

@@ -14,6 +14,10 @@ const RecipeCard = (props) => {
       </ul>
       <h3>Leírás:</h3>
       <p>{props.description}</p>
+      <h3>Elkészítése:</h3>
+      <div>
+        {props.preparation}
+      </div>
     </div>
   );
 };
