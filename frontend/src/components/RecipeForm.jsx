@@ -18,7 +18,7 @@ const RecipeForm = () => {
   const [allIngredients, setAllIngredients] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
 
-  // Meglévő összetevők lekérése az API-ból
+  // Meglévő összetevők lekérése
   useEffect(() => {
     fetch("/cookbook/ingredients/")
       .then((response) => response.json())
@@ -62,7 +62,7 @@ const handleAddIngredient = () => {
     // Hozzávaló nem található, ezért létrehozunk egy újat
     const newIngredient = { name: ingredientName };
 
-    // POST kérés küldése új összetevő létrehozásához
+    // Új összetevő létrehozásához
     fetch("/cookbook/ingredients/", {
       method: "POST",
       headers: {
@@ -90,7 +90,9 @@ const handleSubmit = (event) => {
   formData.append("name", recipeData.name);
   formData.append("description", recipeData.description);
   formData.append("preparation", recipeData.preparation);
-  formData.append("image", recipeData.image);
+  if (recipeData.image) {
+    formData.append("image", recipeData.image);
+  }
 
   // Minden egyes összetevő azonosítóját külön-külön csatolja a FormData objektumhoz.
   selectedIngredients.forEach((ingredient) => {

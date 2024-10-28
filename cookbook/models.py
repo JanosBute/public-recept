@@ -11,7 +11,7 @@ class Ingredient(models.Model):
         return self.name
 
 class Recipe(models.Model):
-    image = models.ImageField(upload_to='recipe_images/', null=True, blank=True)
+    image = models.ImageField(upload_to='recipe_images/', default='recipe_images/default.png/')
     name = models.CharField(max_length=50)
     description = models.TextField()
     ingredients = models.ManyToManyField(Ingredient)

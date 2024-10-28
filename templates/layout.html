@@ -13,15 +13,15 @@
     <header>
         <nav>
             <a href="/">Főoldal</a>
-            <a href="http://127.0.0.1:8000/">Receptek</a>
+            {% comment %} <a href="http://127.0.0.1:8000/">Receptek</a> {% endcomment %}
             {% if user.is_authenticated %}
             <form action="{% url "users:logout" %}" method="post">
                 {% csrf_token %}
                 <button type="submit">Kilépés</button>
             </form>
-            {% else %}
-            <a href="/users/login">Belépés</a>
-            <a href="/users/register">Regisztráció</a>
+            {% comment %} {% else %}
+            <a href="/users/login">Belépés</a> {% endcomment %}
+            {% comment %} <a href="/users/register">Regisztráció</a> {% endcomment %}
             {% endif %}
             <a href="/admin">Admin</a>
         </nav>

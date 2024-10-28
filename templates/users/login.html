@@ -12,7 +12,6 @@ Belépés
     {{form}}
     <input type="submit" value="Belépés">
 </form>    
-
-
-
+<div>Ha még nem regisztrált, hozzon létre egy fiókot:</div>
+<button type="button" onclick="window.location.href='{% url 'users:register' %}';">Regisztráció</button>
 {% endblock content %} 

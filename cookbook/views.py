@@ -31,10 +31,9 @@ class RecipeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 def search_recipes(request):
     query = request.GET.get('query', '')
-    if query:
-        # Keresés a receptek nevében, vagy az összetevők nevében
+    if query:        
         recipes = Recipe.objects.filter(
-            Q(name__icontains=query) | 
+            Q(name__icontains=query) | # Keresés a receptek nevében, vagy az összetevők nevében
             Q(ingredients__name__icontains=query)  # Keresés az ingredients nevén keresztül
         ).distinct()
 

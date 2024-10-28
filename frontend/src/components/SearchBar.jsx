@@ -2,31 +2,41 @@ import React, { useState, useEffect } from 'react';
 
 function SearchBar({ onSearchResults }) {
     const [searchTerm, setSearchTerm] = useState('');
-    const [allRecipes, setAllRecipes] = useState([]); // Az összes recept helyi tárolása
-
-    // Összes recept lekérése egyszer a komponens betöltésekor
+    const [allRecipes, setAllRecipes] = useState([]);
+    
+    // Összes recept lekérése
     useEffect(() => {
         fetch("/cookbook/recipes/")
             .then(response => response.json())
-            .then(data => setAllRecipes(data)) // Az összes recept eltárolása
+            .then(data => setAllRecipes(data))
             .catch(error => console.error('Hiba a receptek lekérdezése során:', error));
     }, []);
 
-    // Szűrés a letöltött adatok között a searchTerm alapján
-    useEffect(() => {
+    // Keresési eredmények kiszűrése
+    const handleSearch = () => {
         if (searchTerm === '') {
-            onSearchResults([]); // Ha a keresőmező üres, töröljük a találatokat
+            onSearchResults(allRecipes); // Üres kereső esetén az összes receptet mutatjuk
             return;
         }
 
-        // Keresés allRecipes változóban
-        const filteredResults = allRecipes.filter(recipe =>
-            recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-            recipe.description.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        const filteredResults = allRecipes.filter(recipe => {
+            const nameMatches = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
+            const ingredientMatches = recipe.ingredients.some(ingredient => 
+                ingredient.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            return nameMatches || ingredientMatches;
+        });
 
         onSearchResults(filteredResults); // Szűrt találatok átadása
-    }, [searchTerm, allRecipes, onSearchResults]); // Újra fut, ha változik a searchTerm vagy az allRecipes
+    };
+
+    // Keresés indítása az Enter lenyomásával
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Az űrlap ne frissüljön újra
+            handleSearch();
+        }
+    };
 
     return (
         <div style={{ display: 'inline-block', marginLeft: '20px' }}>
@@ -34,8 +44,10 @@ function SearchBar({ onSearchResults }) {
                 type="text" 
                 placeholder="Keresés..." 
                 value={searchTerm} 
-                onChange={(e) => setSearchTerm(e.target.value)}  // Keresési kifejezés mentése
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}  // Enter lenyomásra keresés
             />
+            <button onClick={handleSearch}>Keresés</button> {/* Gombbal is keresés */}
         </div>
     );
 }

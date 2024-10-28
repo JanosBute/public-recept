@@ -56,7 +56,7 @@ function NavBar() {
             ) : (
               <>
                     <a href={loginUrl}>Belépés  </a>
-                    <a href={registerUrl}>Regisztráció  </a>
+                    {/* <a href={registerUrl}>Regisztráció  </a> */}
                 </>
             )}
             <a href="/admin">Admin  </a>

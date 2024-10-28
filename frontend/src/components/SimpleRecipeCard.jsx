@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
-import RecipeCard from './RecipeCard'; // Importáljuk a részletes kártyát
+import RecipeCard from './RecipeCard';
 
 const SimpleRecipeCard = (props) => {
-  // Állapot, amely jelzi, hogy a részletes kártyát mutatjuk-e
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(false); //Állapot: részletes vagy egyszerű kártya
 
   const handleShowDetails = () => {
-    setShowDetails(true);  // Részletek megjelenítése
+    setShowDetails(true);  // Részletes
   };
 
   const handleHideDetails = () => {
-    setShowDetails(false);  // Visszatérés az egyszerű nézethez
+    setShowDetails(false);  // Egyzerű
   };
 
   return (
     <div>
-      {/* Feltételes renderelés: ha a showDetails igaz, a részletes kártyát mutatjuk */}
-      {showDetails ? (
+      {showDetails ? (  // Feltételes renderelés
         <div>
           <RecipeCard
             image={props.image}
@@ -25,7 +23,7 @@ const SimpleRecipeCard = (props) => {
             ingredients={props.ingredients}
             preparation={props.preparation}
           />
-          <button onClick={handleHideDetails}>Vissza</button> {/* Vissza gomb */}
+          <button onClick={handleHideDetails}>Vissza</button>
         </div>
       ) : (
         <div>
@@ -33,7 +31,7 @@ const SimpleRecipeCard = (props) => {
           <h2>{props.name}</h2>
           <h3>Leírás:</h3>
           <p>{props.description}</p>
-          <button onClick={handleShowDetails}>Részletek</button> {/* Részletek gomb */}
+          <button onClick={handleShowDetails}>Részletek</button>
         </div>
       )}
     </div>
