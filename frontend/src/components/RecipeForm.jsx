@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Cookies from 'js-cookie';
-
-const getCSRFToken = () => {
-  return Cookies.get('csrftoken'); // Django által generált 'csrftoken' süti
-};
+import { getCSRFToken } from '../utils/csrf';
 
 const RecipeForm = () => {
   const [recipeData, setRecipeData] = useState({

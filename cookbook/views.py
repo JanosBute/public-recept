@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import *
 from .serializers import *
 from rest_framework import generics
+from rest_framework import permissions
 #
 from django.http import JsonResponse
 from django.db.models import Q
@@ -28,6 +29,18 @@ class RecipeListCreateView(generics.ListCreateAPIView):
 class RecipeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+
+    def get_queryset(self):
+        # Csak a bejelentkezett felhasználó saját receptjeihez ad hozzáférést
+        return Recipe.objects.filter(author=self.request.user)
+
+class RecipeMyListView(generics.ListAPIView):   # A felhasználó receptjei
+    serializer_class = RecipeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Recipe.objects.filter(author=self.request.user)
+
 
 def search_recipes(request):
     query = request.GET.get('query', '')

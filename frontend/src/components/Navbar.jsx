@@ -4,6 +4,7 @@ import RecipeForm from './RecipeForm';
 import RecipeList from './RecipeList';
 import SearchBar from './SearchBar';
 import SimpleRecipeCard from './RecipeCard';
+import MyRecipes from './MyRecipes';
 
 
 function NavBar() {
@@ -50,6 +51,7 @@ function NavBar() {
  
             {isAuthenticated ? (
               <>
+                <a href="#" onClick={() => handleMenuClick('my-recipes')}>Saját receptek </a>
                 <a href="#" onClick={() => handleMenuClick('new-recipe')}>Új recept </a>
                 <LogoutButton/>
                 </>
@@ -66,6 +68,7 @@ function NavBar() {
           {activeComponent === 'home' && <h1>Üdvözöljük a Főoldalon!</h1>}
           {activeComponent === 'list' && <RecipeList />}  {/* A receptek listázása */}
           {activeComponent === 'new-recipe' && <RecipeForm />}  {/* Új recept űrlap */}
+          {activeComponent === 'my-recipes' && <MyRecipes />}  {/* Saját receptek */}
           {activeComponent === 'search-results' && (
   <div>
     <h2>Keresési eredmények:</h2>
