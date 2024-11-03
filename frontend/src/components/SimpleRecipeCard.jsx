@@ -15,7 +15,7 @@ const SimpleRecipeCard = (props) => {
   return (
     <div>
       {showDetails ? (
-        <div onClick={handleHideDetails}>
+        <div>
           <RecipeCard
             id={props.id}
             image={props.image}
@@ -27,12 +27,14 @@ const SimpleRecipeCard = (props) => {
             currentUser={props.currentUser} // Fontos: ez legyen átadva, ha használod
             onEdit={props.onEdit} // Adj át az onEdit propot
             onDelete={props.onDelete} // Adj át az onDelete propot
+            onImageClick={handleHideDetails} // Új prop hozzáadása
           />
           <button onClick={handleHideDetails}>Vissza</button>
         </div>
       ) : (
-        <div onClick={handleShowDetails}>
-          <img src={props.image} alt="kép" />
+        <div>
+          <img src={props.image} alt="kép" onClick={handleShowDetails}/>
+          <em>Részletekért kattints a képre</em>
           <h2>{props.name}</h2>
           <h3>Leírás:</h3>
           <p>{props.description}</p>

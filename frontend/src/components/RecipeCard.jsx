@@ -1,10 +1,9 @@
 import React from "react";
 
 const RecipeCard = (props) => {
-  const { id, image, name, ingredients, description, preparation, author, currentUser, onEdit, onDelete } = props;
+  const { id, image, name, ingredients, description, preparation, author, currentUser, onEdit, onDelete, onImageClick  } = props;
 
-  console.log("onDelete függvény a RecipeCard-ban:", onDelete); // Ezt add hozzá
-
+  console.log("onDelete függvény a RecipeCard-ban:", onDelete);
   const isAuthor = author === currentUser;
 
   console.log("Current user:", currentUser);
@@ -14,7 +13,8 @@ const RecipeCard = (props) => {
 
   return (
     <div style={{ border: '1px solid #ddd', padding: '16px', margin: '10px', borderRadius: '8px' }}>
-      <img src={image} alt="kép" style={{ width: '30%', borderRadius: '8px' }} />
+      <img src={image} alt="kép" onClick={onImageClick} style={{ width: '30%', borderRadius: '8px' }} />
+      
       <h2>{name}</h2>
       
       <h3>Összetevők:</h3>

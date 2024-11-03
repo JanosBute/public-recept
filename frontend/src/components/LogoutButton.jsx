@@ -1,15 +1,17 @@
 import React from 'react';
-import { getCSRFToken } from '../utils/csrf';
+import Cookies from 'js-cookie';
 
 function LogoutButton() {
     const handleLogout = (e) => {
         e.preventDefault();
 
+        const csrfToken = Cookies.get('csrftoken');
+
         fetch('/users/logout/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRFToken': getCSRFToken,  // Itt adjuk hozzá a CSRF tokent
+                'X-CSRFToken': csrfToken,  // Itt adjuk hozzá a CSRF tokent
             },
             credentials: 'include',  // Fontos a sütik küldéséhez
         })
