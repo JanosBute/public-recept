@@ -15,7 +15,7 @@ const SimpleRecipeCard = (props) => {
   return (
     <div>
       {showDetails ? (
-        <div onClick={handleHideDetails}>
+        <div class="card" onClick={handleHideDetails}>
           <RecipeCard
             id={props.id}
             image={props.image}
@@ -31,7 +31,7 @@ const SimpleRecipeCard = (props) => {
           <button onClick={handleHideDetails}>Vissza</button>
         </div>
       ) : (
-        <div onClick={handleShowDetails}>
+        <div class="card" onClick={handleShowDetails}>
           <img src={props.image} alt="kép" />
           <h2>{props.name}</h2>
           <h3>Leírás:</h3>

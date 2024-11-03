@@ -53,3 +53,10 @@ function SearchBar({ onSearchResults }) {
 }
 
 export default SearchBar;
+
+
+
+
+
+
+// style al megnézni tudom e megfelelően formázni ! // 
