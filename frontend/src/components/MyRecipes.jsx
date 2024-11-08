@@ -20,6 +20,8 @@ const MyRecipes = () => {
       .catch(error => console.error("Hiba a felhasználói adatok lekérdezésekor:", error));
   }, []);
 
+  const handleDeleteWithState = (recipeId) => handleDelete(recipeId, setRecipes);
+
   return (
     <div>
       <h2>Saját receptek</h2>
@@ -36,8 +38,7 @@ const MyRecipes = () => {
             author={recipe.author}
             currentUser={currentUser}
             onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
+            onDelete={() => handleDeleteWithState(recipe.id)}          />
         ))
       ) : (
         <p>Nincsenek saját receptjeid.</p>

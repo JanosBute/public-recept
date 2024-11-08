@@ -26,12 +26,11 @@ class RecipeListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class RecipeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Recipe.objects.all()
-    serializer_class = RecipeSerializer
-
-    def get_queryset(self):
-        # Csak a bejelentkezett felhasználó saját receptjeihez ad hozzáférést
+class RecipeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView): 
+    queryset = Recipe.objects.all() 
+    serializer_class = RecipeSerializer 
+    
+    def get_queryset(self): 
         return Recipe.objects.filter(author=self.request.user)
 
 class RecipeMyListView(generics.ListAPIView):   # A felhasználó receptjei

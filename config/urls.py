@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include, re_path
 #
 from .views import *
 from django.conf import settings
@@ -15,4 +15,5 @@ urlpatterns = [
     path('user-status/', user_status),
     # és a Django template-ekhez
     path('auth-urls/', auth_urls),
+    re_path(r'^(?!media/).*$', indexPage), 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

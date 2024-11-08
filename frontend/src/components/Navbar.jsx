@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import RecipeForm from './RecipeForm';
 import RecipeList from './RecipeList';
 import SearchBar from './SearchBar';
 import SimpleRecipeCard from './RecipeCard';
 import MyRecipes from './MyRecipes';
-
+import RecipeEditForm from './RecipeEditForm';
 
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loginUrl, setLoginUrl] = useState('');
     const [logoutUrl, setLogoutUrl] = useState('');
     const [registerUrl, setRegisterUrl] = useState('');
-    const [searchResults, setSearchResults] = useState([]);  // A keresési eredmények állapota
-
-    
-    // kiválasztott menüpontok kezelése
-    const [activeComponent, setActiveComponent] = useState('home'); 
-    const handleMenuClick = (componentName) => {
-      setActiveComponent(componentName);  // aktív menüpont beállítása
-  };
+    const [searchResults, setSearchResults] = useState([]);
 
     // Lekérdezzük az URL-eket és az autentikációs státuszt
     useEffect(() => {
@@ -39,44 +33,47 @@ function NavBar() {
     }, []);
 
     return (
-      <div>
-
-        <nav>
-            <a href="#" onClick={() => handleMenuClick('home')}>Főoldal </a>
-            <a href="#" onClick={() => handleMenuClick('list')}>Receptek  </a> 
-            <SearchBar onSearchResults={(results) => {
-                    setSearchResults(results);
-                    setActiveComponent('search-results');
-                }} />
- 
+      <Router>
+        <div>
+          <nav>
+            <Link to="/">Főoldal</Link>
+            <Link to="/recipes">Receptek</Link>
+            <SearchBar onSearchResults={(results) => setSearchResults(results)} />
+            
             {isAuthenticated ? (
               <>
-                <a href="#" onClick={() => handleMenuClick('my-recipes')}>Saját receptek </a>
-                <a href="#" onClick={() => handleMenuClick('new-recipe')}>Új recept </a>
+                <Link to="/my-recipes">Saját receptek</Link>
+                <Link to="/new-recipe">Új recept</Link>
                 <LogoutButton/>
-                </>
+              </>
             ) : (
               <>
-                    <a href={loginUrl}>Belépés  </a>
-                    {/* <a href={registerUrl}>Regisztráció  </a> */}
-                </>
+                <a href={loginUrl}>Belépés</a>
+              </>
             )}
-            <a href="/admin">Admin  </a>
-        </nav>
+            <a href="/admin">Admin</a>
+          </nav>
 
-        <div>
-          {activeComponent === 'home' && <h1>Üdvözöljük a Főoldalon!</h1>}
-          {activeComponent === 'list' && <RecipeList />}  {/* A receptek listázása */}
-          {activeComponent === 'new-recipe' && <RecipeForm />}  {/* Új recept űrlap */}
-          {activeComponent === 'my-recipes' && <MyRecipes />}  {/* Saját receptek */}
-          {activeComponent === 'search-results' && (
-  <div>
-    <h2>Keresési eredmények:</h2>
-    {searchResults.length > 0 ? searchResults.map(recipe => <SimpleRecipeCard key={recipe.id} {...recipe} />) : <p>Nem találtunk recepteket.</p>}
-  </div>
-)}
-            </div>
-      </div>
+          <Routes>
+            <Route path="/" element={<h1>Üdvözöljük a Főoldalon!</h1>} />
+            <Route path="/recipes" element={<RecipeList />} />
+            <Route path="/new-recipe" element={isAuthenticated ? <RecipeForm /> : <Navigate to="/" />} />
+            <Route path="/my-recipes" element={isAuthenticated ? <MyRecipes /> : <Navigate to="/" />} />
+            <Route path="/recipes/edit/:id" element={<RecipeEditForm onUpdateSuccess={() => {/* Navigáció */}} />} />
+            <Route 
+              path="/search-results" 
+              element={
+                <div>
+                  <h2>Keresési eredmények:</h2>
+                  {searchResults.length > 0 ? searchResults.map(recipe => (
+                    <SimpleRecipeCard key={recipe.id} {...recipe} />
+                  )) : <p>Nem találtunk recepteket.</p>}
+                </div>
+              } 
+            />
+          </Routes>
+        </div>
+      </Router>
     );
 }
 

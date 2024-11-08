@@ -6,9 +6,6 @@ from django.http import JsonResponse
 def indexPage(request):
     return render(request, 'index.html')
 
-def mainPage(request):
-    return render(request, 'main/main.html')
-
 # API
 def auth_urls(request):         #  Django url-ek
     urls = {

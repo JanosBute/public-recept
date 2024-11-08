@@ -8,6 +8,7 @@ export const handleEdit = (recipeId) => {
 
 // Törlés
 export const handleDelete = (recipeId, setRecipe) => {
+    console.log("setRecipe:", setRecipe);  // Debugging purpose
     fetch(`/cookbook/recipes/${recipeId}/`, {
         method: 'DELETE',
         headers: {
@@ -15,7 +16,12 @@ export const handleDelete = (recipeId, setRecipe) => {
         },
     })
     .then(() => {
-        setRecipe(prevRecipes => prevRecipes.filter(recipe => recipe.id !== recipeId));
+        if (typeof setRecipe === 'function') {
+            setRecipe((prevRecipes) => prevRecipes.filter((recipe) => recipe.id !== recipeId));
+        } else {
+            console.error("setRecipe is not a function");
+        }
     })
     .catch(error => console.error("Hiba történt a törlés során:", error));
 };
+

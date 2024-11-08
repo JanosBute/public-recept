@@ -1,15 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const RecipeCard = (props) => {
-  const { id, image, name, ingredients, description, preparation, author, currentUser, onEdit, onDelete, onImageClick  } = props;
+  const { id, image, name, ingredients, description, preparation, author, currentUser, onDelete, onImageClick } = props;
+  const navigate = useNavigate();
 
-  console.log("onDelete függvény a RecipeCard-ban:", onDelete);
   const isAuthor = author === currentUser;
 
-  console.log("Current user:", currentUser);
-  console.log("Author:", author);
-  console.log("isAuthor:", isAuthor);
-
+  // Szerkesztési útvonalra navigálás
+  const handleEdit = () => {
+    navigate(`/recipes/edit/${id}`);
+  };
 
   return (
     <div style={{ border: '1px solid #ddd', padding: '16px', margin: '10px', borderRadius: '8px' }}>
@@ -32,10 +33,10 @@ const RecipeCard = (props) => {
 
       {isAuthor && (
         <div style={{ marginTop: '10px' }}>
-          <button onClick={() => onEdit(id)} style={{ marginRight: '10px' }}>
+          <button onClick={handleEdit} style={{ marginRight: '10px' }}>
             Szerkesztés
           </button>
-          <button onClick={() => onDelete && onDelete(id)}> {/* Ellenőrizd, hogy onDelete nem undefined */}
+          <button onClick={() => onDelete && onDelete(id)}>
             Törlés
           </button>
         </div>
