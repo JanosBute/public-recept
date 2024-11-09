@@ -1,6 +1,4 @@
 
-
-
 {% extends "layout.html" %}
 {% load static %}
 {% block Css %}
@@ -17,6 +15,8 @@ Belépés
     {{form}}
     <input type="submit" value="Belépés">
 </form>    
-<div>Ha még nem regisztrált, hozzon létre egy fiókot:</div>
+<div>
+Ha még nem regisztrált, hozzon létre egy fiókot:
 <button type="button" onclick="window.location.href='{% url 'users:register' %}';">Regisztráció</button>
+</div>
 {% endblock content %} 
