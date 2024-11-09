@@ -1,6 +1,9 @@
 
 {% extends "layout.html" %}
-
+{% load static %}
+{% block Css %}
+<link rel="stylesheet" href="{% static "register.css" %}">
+{% endblock Css %}
 {% block title %}
 Regisztráció
 {% endblock title %}

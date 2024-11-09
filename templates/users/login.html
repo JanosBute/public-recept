@@ -9,13 +9,17 @@ Belépés
 {% endblock title %}
 
 {% block content %}
+<div class="h1" >
 <h1>Belépés</h1>
-<form action="{% url "users:login" %}" method="post">
+</div>
+<div class="login">
+    <form action="{% url "users:login" %}" method="post">
     {% csrf_token %}
     {{form}}
     <input type="submit" value="Belépés">
-</form>    
-<div>
+    </form>
+</div>   
+<div class="register">
 Ha még nem regisztrált, hozzon létre egy fiókot:
 <button type="button" onclick="window.location.href='{% url 'users:register' %}';">Regisztráció</button>
 </div>

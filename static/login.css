@@ -1,4 +1,56 @@
-/* Alap stílusok */
 body {
-    background-color: red;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: grey;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.login, .register {
+    width: 300px;
+    margin: 50px auto;
+    padding: 30px 25px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transform: perspective(800px) rotateX(10deg) rotateY(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.login:hover, .register:hover {
+    transform: perspective(800px) rotateX(0deg) rotateY(0deg);
+}
+
+.login h1, .register h1 {
+    margin: -15px -25px 30px;
+    padding: 15px 25px;
+    background: grey;
+    color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="submit"], .register button {
+    width: 100%;
+    background: gray;
+    color: white;
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+form input[type="submit"]:hover, .register button:hover {
+    background: gray;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
 }
