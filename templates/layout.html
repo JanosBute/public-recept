@@ -13,20 +13,36 @@
 <body>
     <header>
         <nav>
-            <a href="/">Főoldal</a>
-            {% comment %} <a href="http://127.0.0.1:8000/">Receptek</a> {% endcomment %}
-            {% if user.is_authenticated %}
-            <form action="{% url "users:logout" %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Kilépés</button>
-            </form>
-            {% comment %} {% else %}
-            <a href="/users/login">Belépés</a> {% endcomment %}
-            {% comment %} <a href="/users/register">Regisztráció</a> {% endcomment %}
-            {% endif %}
-            <a href="/admin">Admin</a>
+            <!-- Hamburger menü beállítása checkbox segítségével -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <div class="logo-container">
+                <img src="{% static 'logo.jpeg' %}" alt="Receptkönyv Logo" class="logo">
+                <h1 class="site-title">Receptkönyv</h1>
+            </div>            
+            <!-- Navigációs linkek -->
+            <div class="menu">
+                <a href="/">Főoldal</a>
+                {% comment %} <a href="http://127.0.0.1:8000/">Receptek</a> {% endcomment %}
+                {% if user.is_authenticated %}
+                <form action="{% url "users:logout" %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Kilépés</button>
+                </form>
+                {% comment %} {% else %}
+                <a href="/users/login">Belépés</a> {% endcomment %}
+                {% comment %} <a href="/users/register">Regisztráció</a> {% endcomment %}
+                {% endif %}
+                <a href="/admin">Admin</a>
+            </div>
         </nav>
     </header>
+    <!-- Overlay elem -->
+    <div class="overlay"></div>
     {% block content %}
     {% if user.is_authenticated %}
         <h3>Főzzön valami finomat kedves {{user}}</h3>
