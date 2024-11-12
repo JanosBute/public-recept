@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import './LogoutButton.css';  // Importáljuk a CSS-t
 
 function LogoutButton() {
     const handleLogout = (e) => {

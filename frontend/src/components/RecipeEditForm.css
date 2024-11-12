@@ -1,0 +1,102 @@
+/* Alapbeállítások */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+form {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s;
+}
+
+form:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+li button {
+    background-color: #ff4d4d;
+    padding: 0.5rem;
+    margin-left: 1rem;
+}
+
+li button:hover {
+    background-color: #ff1a1a;
+    transform: translateY(-2px);
+}
+

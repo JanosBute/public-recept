@@ -1,0 +1,228 @@
+/* Alapbeállítások */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+/* Navigáció */
+.navbar {
+    background-color: gray;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between; /* Középre igazítja a tartalmat */
+    align-items: center;
+    position: relative;
+}
+
+/* Hamburger ikon balra igazítása */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+    margin-right: auto; /* Az ikon balra kerül */
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Menü beállítása bal oldalra */
+/* Menü alapállapot: kívül, elhalványítva és elmosódva */
+.menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: gray;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    padding-top: 2rem;
+    z-index: 1000;
+    flex-direction: column;
+    text-align: center;
+    
+    /* Kezdeti animációs stílusok */
+    transform: translateX(-50px); /* Kiindulási helyzet balra */
+    opacity: 0; /* Áttetsző */
+    filter: blur(8px); /* Homályos */
+    
+    /* Animáció beállítása */
+    transition: 
+        transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.5s, 
+        opacity 0.4s ease-in 0.5s,
+        filter 0.4s ease-in 0.5s;
+}
+
+/* Menü linkek alap színének beállítása */
+.menu a {
+    color: white; /* Fehér szín */
+    text-decoration: none;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease; /* Simább animáció */
+    display: none; /* Elrejtjük a gombokat */
+}
+
+/* Menü kinyitásakor megjelenítjük a linkeket */
+.menu-toggle:checked ~ .menu a {
+    display: block; /* A gombok most már láthatóak lesznek */
+}
+
+/* Menü linkek hover effektus (3D hatás) */
+.menu a:hover {
+    color: black; /* Rávihető színváltozás (pl. narancssárga) */
+    transform: translateY(-5px); /* 3D hatás, mintha "emelkedne" a link */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Árnyék hozzáadása */
+}
+
+/* Menü megjelenítése: a helyére csúszik, láthatóvá válik és élesedik */
+.menu-toggle:checked ~ .menu {
+    transform: translateX(0); /* Végső helyzet */
+    opacity: 1; /* Teljesen látható */
+    filter: blur(0); /* Éles */
+}
+
+/* Overlay alapértelmezett beállításai */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Félátlátszó fekete */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 999; /* A menü mögött marad */
+}
+
+/* Overlay megjelenítése, amikor a menü nyitva van */
+.menu-toggle:checked ~ .overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menü és hamburger ikon átalakítása nyitáskor */
+.menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Checkbox elrejtése */
+.menu-toggle {
+    display: none; /* Ezzel láthatatlanná tesszük */
+}
+
+/* Logó és cím igazítása jobbra */
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Logó méretének növelése */
+.logo-container .logo {
+    width: 120px; /* Logó szélessége */
+    height: auto; /* Magasság automatikusan arányos */
+    margin-right: 10px; /* Térköz a cím és a logó között */
+}
+
+.site-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Navigáció */
+.navbar {
+    background-color: gray;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Keresősáv középre igazítása a fejlécben */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    margin: 0 auto; /* Középre igazítás */
+}
+
+.search-bar:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar input[type="text"] {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-bar input[type="text"]:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.search-bar button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Különböző képernyőméretekhez */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-container {
+        margin-bottom: 20px;
+    }
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RecipeCard from './RecipeCard';
 import { handleDelete, handleEdit } from '../utils/recipeActions';
+import './MyRecipes.css';  // Importáljuk a CSS-t
+
 
 const MyRecipes = () => {
   const [recipes, setRecipes] = useState([]);

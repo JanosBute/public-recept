@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getCSRFToken } from '../utils/csrf';
+import './RecipeForm.css';  // Importáljuk a CSS-t
 
 const RecipeForm = () => {
   const [recipeData, setRecipeData] = useState({

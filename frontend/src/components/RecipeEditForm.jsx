@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCSRFToken } from '../utils/csrf';
+import './RecipeEditForm.css';  // Importáljuk a CSS-t
+
 
 const RecipeEditForm = () => {
     const { id } = useParams();

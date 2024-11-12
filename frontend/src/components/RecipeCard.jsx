@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import './RecipeCard.css';  // Importáljuk a CSS-t
 
 const RecipeCard = (props) => {
   const { id, image, name, ingredients, description, preparation, author, currentUser, onDelete, onImageClick } = props;

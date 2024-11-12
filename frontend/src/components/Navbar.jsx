@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import SimpleRecipeCard from './RecipeCard';
 import MyRecipes from './MyRecipes';
 import RecipeEditForm from './RecipeEditForm';
+import './NavBar.css';  // Importáljuk a CSS-t
 
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,25 +36,37 @@ function NavBar() {
     return (
       <Router>
         <div>
-          <nav>
-            <Link to="/">Főoldal</Link>
-            <Link to="/recipes">Receptek</Link>
+          <nav className="navbar">
+            <input type="checkbox" id="menu-toggle" className="menu-toggle" />
+            <label htmlFor="menu-toggle" className="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <div className="logo-container">
+              <img src="/logo.jpg" alt="Logo" className="logo" />
+              <h1 className="site-title">Receptkönyv</h1>
+            </div>
             <SearchBar onSearchResults={(results) => setSearchResults(results)} />
-            
-            {isAuthenticated ? (
-              <>
-                <Link to="/my-recipes">Saját receptek</Link>
-                <Link to="/new-recipe">Új recept</Link>
-                <LogoutButton/>
-              </>
-            ) : (
-              <>
-                <a href={loginUrl}>Belépés</a>
-              </>
-            )}
-            <a href="/admin">Admin</a>
+            <div className="menu">
+              <Link to="/">Főoldal</Link>
+              <Link to="/recipes">Receptek</Link>
+              
+              {isAuthenticated ? (
+                <>
+                  <Link to="/my-recipes">Saját receptek</Link>
+                  <Link to="/new-recipe">Új recept</Link>
+                  <LogoutButton/>
+                </>
+              ) : (
+                <>
+                  <a href={loginUrl}>Belépés</a>
+                </>
+              )}
+              <a href="/admin">Admin</a>
+            </div>
           </nav>
-
+          <div className="overlay"></div>
           <Routes>
             <Route path="/" element={<h1>Üdvözöljük a Főoldalon!</h1>} />
             <Route path="/recipes" element={<RecipeList />} />

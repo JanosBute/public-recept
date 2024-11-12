@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RecipeCard from './RecipeCard';
+import './SimpleRecipeCard.css';  // Importáljuk a CSS-t
 
 const SimpleRecipeCard = (props) => {
   const [showDetails, setShowDetails] = useState(false);

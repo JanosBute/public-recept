@@ -1,0 +1,58 @@
+/* Alapbeállítások */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Keresősáv stílus */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    margin: 0 auto; /* Középre igazítás */
+}
+
+.search-bar:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar input[type="text"] {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-bar input[type="text"]:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.search-bar button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

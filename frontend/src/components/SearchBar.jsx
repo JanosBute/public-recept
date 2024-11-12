@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SearchBar.css';  // Importáljuk a CSS-t
 
 const SearchBar = ({ onSearchResults }) => {
   const [query, setQuery] = useState("");
