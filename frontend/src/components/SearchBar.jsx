@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SearchBar.css';  // Importáljuk a CSS-t
 
 const SearchBar = ({ onSearchResults }) => {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    fetch(`/search?query=${query}`)
+    fetch(`cookbook/search-recipes?query=${query}`)
       .then(response => response.json())
       .then(data => {
         onSearchResults(data);

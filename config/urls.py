@@ -15,5 +15,8 @@ urlpatterns = [
     path('user-status/', user_status),
     # és a Django template-ekhez
     path('auth-urls/', auth_urls),
-    re_path(r'^(?!media/).*$', indexPage), 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    re_path(r'^(?:.*)/?$', indexPage),  # Csak a React oldalak átirányítása
+]

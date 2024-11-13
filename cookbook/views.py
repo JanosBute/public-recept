@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 #
 from .models import *
 from .serializers import *
@@ -43,9 +44,10 @@ class RecipeMyListView(generics.ListAPIView):   # A felhasználó receptjei
 
 def search_recipes(request):
     query = request.GET.get('query', '')
-    if query:        
+    if query:
+        # Keresés a receptek nevében, vagy az összetevők nevében
         recipes = Recipe.objects.filter(
-            Q(name__icontains=query) | # Keresés a receptek nevében, vagy az összetevők nevében
+            Q(name__icontains=query) | 
             Q(ingredients__name__icontains=query)  # Keresés az ingredients nevén keresztül
         ).distinct()
 

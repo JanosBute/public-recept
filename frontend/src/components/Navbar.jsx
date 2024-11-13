@@ -44,7 +44,7 @@ function NavBar() {
                 <span></span>
             </label>
             <div className="logo-container">
-              <img src="/logo.jpg" alt="Logo" className="logo" />
+              <img src="/media/logo.jpg" alt="Logo" className="logo" />
               <h1 className="site-title">Receptkönyv</h1>
             </div>
             <SearchBar onSearchResults={(results) => setSearchResults(results)} />
