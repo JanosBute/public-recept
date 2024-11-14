@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { HashRouter  as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import RecipeForm from './RecipeForm';
 import RecipeList from './RecipeList';
@@ -48,8 +48,8 @@ function NavBar() {
               <h1 className="site-title">Receptkönyv</h1>
             </div>
             <SearchBar onSearchResults={(results) => setSearchResults(results)} />
-            <div className="menu">
-              <Link to="/">Főoldal</Link>
+            <div className="menu ">
+              <Link to="/" >Főoldal</Link>
               <Link to="/recipes">Receptek</Link>
               
               {isAuthenticated ? (

@@ -14,13 +14,21 @@ const SearchBar = ({ onSearchResults }) => {
       });
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // Az űrlap ne frissüljön újra
+        handleSearch();
+    }
+};
+
   return (
     <div>
       <input 
         type="text" 
+        placeholder="Keresés..." 
         value={query} 
         onChange={(e) => setQuery(e.target.value)} 
-        placeholder="Keresés..." 
+        onKeyDown={handleKeyDown}  // Enter lenyomásra keresés
       />
       <button onClick={handleSearch}>Keresés</button>
     </div>
