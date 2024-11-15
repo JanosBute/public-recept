@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RecipeCard from './RecipeCard';
 import './SimpleRecipeCard.css';  // Importáljuk a CSS-t
+import './RecipeCard.css';
 
 const SimpleRecipeCard = (props) => {
   const [showDetails, setShowDetails] = useState(false);
@@ -32,10 +33,9 @@ const SimpleRecipeCard = (props) => {
           <button onClick={handleHideDetails}>Vissza</button>
         </div>
       ) : (
-        <div onClick={handleShowDetails}>
+        <div onClick={handleShowDetails} className='simple-recipe-card '>
           <img src={props.image} alt="kép" />
           <h2>{props.name}</h2>
-          <h3>Leírás:</h3>
           <p>{props.description}</p>
           <button onClick={handleShowDetails}>Részletek</button>
         </div>

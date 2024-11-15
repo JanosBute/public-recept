@@ -24,7 +24,7 @@ const RecipeList = () => {
     }, []);
         
     return (
-        <section>
+        <section className='section'>
         { Array.isArray(recipe) ? recipe.map(recipe => 
             <SimpleRecipeCard 
                 key={recipe.id}

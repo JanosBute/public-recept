@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './RecipeCard.css';  // Importáljuk a CSS-t
 
 const RecipeCard = (props) => {
-  const { id, image, name, ingredients, description, preparation, author, currentUser, onDelete, onImageClick } = props;
+  const { id, image, name, ingredients, preparation, author, currentUser, onDelete, onImageClick } = props;
   const navigate = useNavigate();
 
   const isAuthor = author === currentUser;
@@ -14,8 +14,8 @@ const RecipeCard = (props) => {
   };
 
   return (
-    <div style={{ border: '1px solid #ddd', padding: '16px', margin: '10px', borderRadius: '8px' }}>
-      <img src={image} alt="kép" onClick={onImageClick} style={{ width: '30%', borderRadius: '8px' }} />
+    <div className="recipe-card">
+      <img src={image} alt="kép" onClick={onImageClick} />
       
       <h2>{name}</h2>
       
@@ -25,9 +25,6 @@ const RecipeCard = (props) => {
           <li key={ingredient.id}>{ingredient.name}</li>
         ))}
       </ul>
-      
-      <h3>Leírás:</h3>
-      <p>{description}</p>
       
       <h3>Elkészítése:</h3>
       <div>{preparation}</div>

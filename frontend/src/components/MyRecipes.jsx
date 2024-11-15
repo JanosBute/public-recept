@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import RecipeCard from './RecipeCard';
+import SimpleRecipeCard from './SimpleRecipeCard';
 import { handleDelete, handleEdit } from '../utils/recipeActions';
-import './MyRecipes.css';  // Importáljuk a CSS-t
+import './RecipeList.css';  // Importáljuk a CSS-t
 
 
 const MyRecipes = () => {
@@ -22,31 +22,26 @@ const MyRecipes = () => {
       .catch(error => console.error("Hiba a felhasználói adatok lekérdezésekor:", error));
   }, []);
 
-  const handleDeleteWithState = (recipeId) => handleDelete(recipeId, setRecipes);
+  // const handleDeleteWithState = (recipeId) => handleDelete(recipeId, setRecipes);
 
   return (
     <div>
       <h2>Saját receptek</h2>
-      {recipes.length > 0 ? (
-        recipes.map(recipe => (
-          <RecipeCard
-            key={recipe.id}
-            id={recipe.id}
-            image={recipe.image}
-            name={recipe.name}
-            ingredients={recipe.ingredients}
-            description={recipe.description}
-            preparation={recipe.preparation}
-            author={recipe.author}
-            currentUser={currentUser}
-            onEdit={handleEdit}
-            onDelete={() => handleDeleteWithState(recipe.id)}          />
-        ))
-      ) : (
-        <p>Nincsenek saját receptjeid.</p>
-      )}
+      <section className='section'>
+        { Array.isArray(recipes) ? recipes.map(recipe => 
+            <SimpleRecipeCard 
+                key={recipe.id}
+                {...recipe}
+                currentUser={currentUser} 
+                onEdit={() => handleEdit(recipe.id)}
+                onDelete={() => handleDelete(recipe.id, setRecipes)}
+            />
+        ) : <p>Nem találtunk recepteket.</p>}
+        </section>
     </div>
   );
 };
 
 export default MyRecipes;
+
+

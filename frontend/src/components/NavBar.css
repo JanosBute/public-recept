@@ -1,11 +1,3 @@
-/* Alapbeállítások */
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f8f9fa;
-    line-height: 1.6;
-}
-
 /* Navigáció */
 .navbar {
     background-color: gray;

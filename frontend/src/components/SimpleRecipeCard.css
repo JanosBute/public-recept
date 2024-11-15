@@ -1,13 +1,3 @@
-/* Alapbeállítások */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-
 /* Egyszerű receptkártya stílus */
 .simple-recipe-card {
     background-color: #fff;
@@ -26,6 +16,7 @@ body {
 }
 
 .simple-recipe-card img {
+    object-fit: cover;
     max-width: 100%;
     border-radius: 10px;
     margin-bottom: 1rem;
