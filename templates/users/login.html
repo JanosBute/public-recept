@@ -1,16 +1,18 @@
 
 {% extends "layout.html" %}
 {% load static %}
+
 {% block Css %}
 <link rel="stylesheet" href="{% static "login.css" %}">
 {% endblock Css %}
+
 {% block title %}
 Belépés
 {% endblock title %}
 
 {% block content %}
 <div class="h1" >
-<h1>Belépés</h1>
+    <h1>Belépés</h1>
 </div>
 <div class="login">
     <form action="{% url "users:login" %}" method="post">

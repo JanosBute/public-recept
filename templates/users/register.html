@@ -13,13 +13,16 @@ Regisztráció
 {% if form.errors %}
 <h3>Hibás regisztráció.</h3>
 {% endif %}
-
-<p>Új felhasználó regisztrálása.</p>
-<form action="{% url "users:register" %}" method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Regisztrál</button>
-</form>
+<div  class="h1">
+    <h1>Új felhasználó regisztrálása.</h1>
+</div>
+<div class="register">
+    <form action="{% url "users:register" %}" method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Regisztrál</button>
+    </form>
+</div>
 
 {% if messages %}
     {% for message in messages %}
