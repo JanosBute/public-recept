@@ -7,14 +7,21 @@ h1 {
 .h1 {
     margin: -15px -25px 30px;
     padding: 15px 25px;
-    background: grey;
-    color: white;
-    border-radius: 10px 10px 0 0;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transform: perspective(800px) rotateX(10deg) rotateY(0deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+.button {
+    text-align: center;
 }
 
 button {
-    width: 100%;
+
+    width: 300px;
     background: gray;
     color: white;
     border: 0;

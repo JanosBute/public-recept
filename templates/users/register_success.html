@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block Css %}
-<link rel="stylesheet" href="{% static "register_succes.css" %}">
+<link rel="stylesheet" href="{% static "register_success.css" %}">
 {% endblock Css %}
 
 {% block title %}
@@ -13,8 +13,9 @@ Sikeres regisztráció
 <div class="h1">
     <h1>Sikeres regisztráció!</h1>
 </div>
-
-<button type="button" onclick="window.location.href='{% url 'users:login' %}';">Belépés</button>
+<div class="button">
+    <button type="button" onclick="window.location.href='{% url 'users:login' %}';">Belépés</button>
+</div>
 
 
 {% endblock content %} 

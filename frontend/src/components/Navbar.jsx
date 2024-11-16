@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import SimpleRecipeCard from './RecipeCard';
 import MyRecipes from './MyRecipes';
 import RecipeEditForm from './RecipeEditForm';
+import MainPage from "./MainPage.jsx"
 import './NavBar.css';  // Importáljuk a CSS-t
 
 function NavBar() {
@@ -68,7 +69,7 @@ function NavBar() {
           </nav>
           <div className="overlay"></div>
           <Routes>
-            <Route path="/" element={<h1>Üdvözöljük a Főoldalon!</h1>} />
+            <Route path="/" element={<MainPage />} />
             <Route path="/recipes" element={<RecipeList />} />
             <Route path="/new-recipe" element={isAuthenticated ? <RecipeForm /> : <Navigate to="/" />} />
             <Route path="/my-recipes" element={isAuthenticated ? <MyRecipes /> : <Navigate to="/" />} />

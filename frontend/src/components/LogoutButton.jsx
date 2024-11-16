@@ -18,6 +18,7 @@ function LogoutButton() {
         })
         .then(response => {
             if (response.ok) {
+                alert("Sikeres kijelentkezés, viszontlátásra!");
                 window.location.href = '/';  // Átirányítás a főoldalra sikeres kilépés után
             } else {
                 console.error('Kilépési hiba!');
