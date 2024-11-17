@@ -1,5 +1,6 @@
 /* Keresősáv stílus */
-.search-bar {
+#root > div > div > nav > div:nth-child(4) {
+    float: right;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -8,40 +9,43 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
-    margin: 0 auto; /* Középre igazítás */
+    /* margin: 0 auto; Középre igazítás */
 }
 
-.search-bar:hover {
+
+#root > div > div > nav > div:nth-child(4):hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.search-bar input[type="text"] {
+#root > div > div > nav > div:nth-child(4) input[type="text"] {
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin-right: 10px;
+    margin: auto;
     width: 100%;
     max-width: 300px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
+    object-fit: fill;
 }
 
-.search-bar input[type="text"]:focus {
+#root > div > div > nav > div:nth-child(4) input[type="text"]:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     outline: none;
 }
 
-.search-bar button {
+#root > div > div > nav > div:nth-child(4) button {
     background-color: #4CAF50;
     color: white;
     border: none;
     padding: 0.5rem 1rem;
+    margin: auto;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.search-bar button:hover {
+#root > div > div > nav > div:nth-child(4):hover {
     background-color: #45a049;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
