@@ -6,6 +6,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch; /* Ezzel biztosítod, hogy a kártyák azonos magasságúak legyenek */
 }
 
 p {

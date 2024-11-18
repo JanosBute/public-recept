@@ -31,7 +31,7 @@ const SearchBar = ({ onSearchResults }) => {
         onChange={(e) => setQuery(e.target.value)} 
         onKeyDown={handleKeyDown}  // Enter lenyomásra keresés
       />
-      <button onClick={handleSearch}>Keresés</button>
+      {/* <button onClick={handleSearch}>Keresés</button> */}
     </div>
   );
 };

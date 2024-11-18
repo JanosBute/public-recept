@@ -6,8 +6,12 @@
     padding: 1rem;
     margin: 1rem;
     transition: box-shadow 0.3s ease-in-out, transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    cursor: pointer;
+    width: 200px;
+    min-height: 300px; /* Minimális magasság */
 }
 
 .simple-recipe-card:hover {
