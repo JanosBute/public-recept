@@ -8,7 +8,6 @@
 4.  requirements.txt - ben felsorolt fájlok telepítése (pl:django) : 
 ``` batch
 pip install -r requirements.txt
-pip install pillow
 ```
 5. React telepítése : 
 ``` batch
