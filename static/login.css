@@ -1,3 +1,4 @@
+/* Alapbeállítások */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -6,18 +7,20 @@ body {
     padding: 0;
 }
 
+/* Címsor stílus */
 h1 {
     text-align: center;
-    color: grey;
+    color: #5D5C31; /* Szín módosítása */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+/* Bejelentkezés és regisztráció stílus */
 .login, .register {
     width: 300px;
     margin: 50px auto;
     padding: 30px 25px;
-    background: white;
-    border: 1px solid #ccc;
+    background: #FFFFFF; /* Fehér szín */
+    border: 1px solid #5D5C31; /* Szín módosítása */
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transform: perspective(800px) rotateX(10deg) rotateY(0deg);
@@ -31,16 +34,17 @@ h1 {
 .login h1, .register h1 {
     margin: -15px -25px 30px;
     padding: 15px 25px;
-    background: grey;
-    color: white;
+    background: #8C2B32; /* Fő szín */
+    color: #FFFFFF; /* Fehér szín */
     border-radius: 10px 10px 0 0;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Gomb stílus */
 form input[type="submit"], .register button {
     width: 100%;
-    background: gray;
-    color: white;
+    background: #8C2B32; /* Fő szín */
+    color: #FFFFFF; /* Fehér szín */
     border: 0;
     padding: 10px;
     border-radius: 5px;
@@ -50,11 +54,12 @@ form input[type="submit"], .register button {
 }
 
 form input[type="submit"]:hover, .register button:hover {
-    background: gray;
+    background: #5D5C31; /* Szín módosítása */
     transform: translateY(-2px);
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Űrlap mezők stílus */
 form input[type="password"], form input[type="text"] {
     float: right;
     text-align: center;

@@ -34,14 +34,14 @@
 
 .simple-recipe-card h2 {
     font-size: 1.8rem;
-    color: #333;
+    color: #8C2B32; /* Fő szín */
     margin-bottom: 0.5rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .simple-recipe-card h3 {
     font-size: 1.2rem;
-    color: #555;
+    color: #5D5C31; /* Szín módosítása */
     margin-bottom: 0.5rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -53,7 +53,7 @@
 }
 
 .simple-recipe-card button {
-    background-color: #4CAF50;
+    background-color: #8C2B32; /* Fő szín */
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -63,7 +63,7 @@
 }
 
 .simple-recipe-card button:hover {
-    background-color: #45a049;
+    background-color: #5D5C31; /* Szín módosítása */
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

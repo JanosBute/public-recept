@@ -15,7 +15,7 @@ form:hover {
 
 h2 {
     font-size: 2rem;
-    color: #333;
+    color: #8C2B32; /* Fő szín */
     margin-bottom: 1rem;
     text-align: center;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -24,7 +24,7 @@ h2 {
 label {
     display: block;
     font-size: 1.1rem;
-    color: #555;
+    color: #5D5C31; /* Szín módosítása */
     margin-bottom: 0.5rem;
 }
 
@@ -48,7 +48,7 @@ textarea:focus {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #8C2B32; /* Fő szín */
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -59,7 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #5D5C31; /* Szín módosítása */
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

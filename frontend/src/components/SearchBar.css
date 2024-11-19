@@ -12,7 +12,6 @@
     /* margin: 0 auto; Középre igazítás */
 }
 
-
 #root > div > div > nav > div:nth-child(4):hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
@@ -35,7 +34,7 @@
 }
 
 #root > div > div > nav > div:nth-child(4) button {
-    background-color: #4CAF50;
+    background-color: #8C2B32; /* Fő szín */
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -46,7 +45,7 @@
 }
 
 #root > div > div > nav > div:nth-child(4):hover {
-    background-color: #45a049;
+    background-color: #5D5C31; /* Szín módosítása */
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

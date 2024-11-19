@@ -1,29 +1,40 @@
+/* Alapbeállítások */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+}
+
+/* Címsor stílus */
 h1 {
     text-align: center;
-    color: grey;
+    color: #5D5C31; /* Szín módosítása */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .h1 {
     margin: -15px -25px 30px;
     padding: 15px 25px;
-    background-color: #f8f9fa;
-    border: 1px solid #ccc;
+    background-color: #8C2B32; /* Fő szín */
+    border: 1px solid #5D5C31; /* Szín módosítása */
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transform: perspective(800px) rotateX(10deg) rotateY(0deg);
     transition: transform 0.3s ease-in-out;
 }
 
+/* Gomb stílus */
 .button {
     text-align: center;
 }
 
 button {
-
     width: 300px;
-    background: gray;
-    color: white;
+    background: #8C2B32; /* Fő szín */
+    color: #FFFFFF; /* Fehér szín */
     border: 0;
     padding: 10px;
     border-radius: 5px;
@@ -33,7 +44,7 @@ button {
 }
 
 button:hover {
-    background: gray;
+    background: #5D5C31; /* Szín módosítása */
     transform: translateY(-2px);
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
 }

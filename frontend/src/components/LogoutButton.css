@@ -1,6 +1,6 @@
 .button {
-    background-color: gray;
-    color: gray;
+    background-color: #8C2B32; /* Fő szín */
+    color: #FFFFFF; /* Fehér szín */
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
@@ -9,7 +9,7 @@
 }
 
 .button:hover {
-    background-color: gray;
+    background-color: #5D5C31; /* Szín módosítása */
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
