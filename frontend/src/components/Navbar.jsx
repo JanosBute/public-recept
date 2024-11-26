@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HashRouter  as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import LogoutButton from './LogoutButton';
 import RecipeForm from './RecipeForm';
 import RecipeList from './RecipeList';
@@ -7,24 +7,22 @@ import SearchBar from './SearchBar';
 import SimpleRecipeCard from './RecipeCard';
 import MyRecipes from './MyRecipes';
 import RecipeEditForm from './RecipeEditForm';
-import MainPage from "./MainPage.jsx"
-import './NavBar.css';  // Importáljuk a CSS-t
+import MainPage from "./MainPage.jsx";
+import './NavBar.css';
 
 function NavBar() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loginUrl, setLoginUrl] = useState('');
     const [logoutUrl, setLogoutUrl] = useState('');
-    const [registerUrl, setRegisterUrl] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-    // Lekérdezzük az URL-eket és az autentikációs státuszt
     useEffect(() => {
         fetch("/auth-urls/")
             .then(response => response.json())
             .then(data => {
                 setLoginUrl(data.login_url);
                 setLogoutUrl(data.logout_url);
-                setRegisterUrl(data.register_url);
             });
 
         fetch("/user-status/")
@@ -34,60 +32,71 @@ function NavBar() {
             });
     }, []);
 
+    const toggleMenu = () => setMenuOpen(!menuOpen);
+    const closeMenu = () => setMenuOpen(false);
+
     return (
-      <Router>
-        <div>
-          <nav className="navbar">
-            <input type="checkbox" id="menu-toggle" className="menu-toggle" />
-            <label htmlFor="menu-toggle" className="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-            <div className="logo-container">
-              <img src="/media/logo.jpg" alt="Logo" className="logo" />
-              <h1 className="site-title">Receptkönyv</h1>
+        <Router>
+            <div>
+                <nav className="navbar">
+                    <input 
+                        type="checkbox" 
+                        id="menu-toggle" 
+                        className="menu-toggle" 
+                        checked={menuOpen} 
+                        onChange={toggleMenu} 
+                    />
+                    <label htmlFor="menu-toggle" className="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+
+                    <div className="logo-container">
+                        <img src="/media/logo.jpg" alt="Logo" className="logo" />
+                        <h1 className="site-title">Receptkönyv</h1>
+                    </div>
+
+                    <SearchBar onSearchResults={(results) => setSearchResults(results)} />
+
+                    <div className={`menu ${menuOpen ? "open" : ""}`}>
+                        <Link to="/" onClick={closeMenu}>Főoldal</Link>
+                        <Link to="/recipes" onClick={closeMenu}>Receptek</Link>
+                        {isAuthenticated ? (
+                            <>
+                                <Link to="/my-recipes" onClick={closeMenu}>Saját receptek</Link>
+                                <Link to="/new-recipe" onClick={closeMenu}>Új recept</Link>
+                                <LogoutButton />
+                            </>
+                        ) : (
+                            <a href={loginUrl} onClick={closeMenu}>Belépés</a>
+                        )}
+                        <a href="/admin" onClick={closeMenu}>Admin</a>
+                    </div>
+                </nav>
+
+                <div className={`overlay ${menuOpen ? "visible" : ""}`} onClick={closeMenu}></div>
+
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/recipes" element={<RecipeList />} />
+                    <Route path="/new-recipe" element={isAuthenticated ? <RecipeForm /> : <Navigate to="/" />} />
+                    <Route path="/my-recipes" element={isAuthenticated ? <MyRecipes /> : <Navigate to="/" />} />
+                    <Route path="/recipes/edit/:id" element={<RecipeEditForm onUpdateSuccess={() => {/* Navigáció */}} />} />
+                    <Route 
+                        path="/search-results" 
+                        element={
+                            <div>
+                                <h2>Keresési eredmények:</h2>
+                                {searchResults.length > 0 ? searchResults.map(recipe => (
+                                    <SimpleRecipeCard key={recipe.id} {...recipe} />
+                                )) : <p>Nem találtunk recepteket.</p>}
+                            </div>
+                        } 
+                    />
+                </Routes>
             </div>
-            <SearchBar onSearchResults={(results) => setSearchResults(results)} />
-            <div className="menu ">
-              <Link to="/" >Főoldal</Link>
-              <Link to="/recipes">Receptek</Link>
-              
-              {isAuthenticated ? (
-                <>
-                  <Link to="/my-recipes">Saját receptek</Link>
-                  <Link to="/new-recipe">Új recept</Link>
-                  <LogoutButton/>
-                </>
-              ) : (
-                <>
-                  <a href={loginUrl}>Belépés</a>
-                </>
-              )}
-              <a href="/admin">Admin</a>
-            </div>
-          </nav>
-          <div className="overlay"></div>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/recipes" element={<RecipeList />} />
-            <Route path="/new-recipe" element={isAuthenticated ? <RecipeForm /> : <Navigate to="/" />} />
-            <Route path="/my-recipes" element={isAuthenticated ? <MyRecipes /> : <Navigate to="/" />} />
-            <Route path="/recipes/edit/:id" element={<RecipeEditForm onUpdateSuccess={() => {/* Navigáció */}} />} />
-            <Route 
-              path="/search-results" 
-              element={
-                <div>
-                  <h2>Keresési eredmények:</h2>
-                  {searchResults.length > 0 ? searchResults.map(recipe => (
-                    <SimpleRecipeCard key={recipe.id} {...recipe} />
-                  )) : <p>Nem találtunk recepteket.</p>}
-                </div>
-              } 
-            />
-          </Routes>
-        </div>
-      </Router>
+        </Router>
     );
 }
 

@@ -1,51 +1,94 @@
-/* Keresősáv stílus */
-#root > div > div > nav > div:nth-child(4) {
-    float: right;
+/* Asztali kereső */
+.desktop-search-bar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-    /* margin: 0 auto; Középre igazítás */
-}
-
-#root > div > div > nav > div:nth-child(4):hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-#root > div > div > nav > div:nth-child(4) input[type="text"] {
+    justify-content: flex-end;
+  }
+  
+  .desktop-search-bar input {
     padding: 0.5rem 1rem;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin: auto;
-    width: 100%;
-    max-width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
-    object-fit: fill;
-}
-
-#root > div > div > nav > div:nth-child(4) input[type="text"]:focus {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 1rem;
+    width: 300px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .desktop-search-bar input:focus {
     outline: none;
-}
-
-#root > div > div > nav > div:nth-child(4) button {
-    background-color: #8C2B32; /* Fő szín */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Mobil nézet lebegő kereső ikon */
+  .mobile-search-container {
+    display: none; /* Alapból rejtett, csak mobilon látszik */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .mobile-search-icon {
+    background-color: #8c2b32;
     color: white;
     border: none;
-    padding: 0.5rem 1rem;
-    margin: auto;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-
-#root > div > div > nav > div:nth-child(4):hover {
-    background-color: #5D5C31; /* Szín módosítása */
-    transform: translateY(-2px);
+    padding: 0.8rem;
+    border-radius: 50%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .mobile-search-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Mobil kereső mező kibővült állapotban */
+  .mobile-search-bar {
+    position: fixed;
+    top: 20px;
+    left: 10%;
+    right: 10%;
+    z-index: 1000;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+  }
+  
+  .mobile-search-bar input {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .mobile-search-bar input:focus {
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mobile-close-icon {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* Reszponzív nézet szabályok */
+  @media (max-width: 768px) {
+    .desktop-search-bar {
+      display: none; /* Mobilon az asztali kereső rejtett */
+    }
+  
+    .mobile-search-container {
+      display: block; /* Mobilon a lebegő kereső ikon látható */
+    }
+  }
+  
