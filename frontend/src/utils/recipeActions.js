@@ -3,12 +3,12 @@ import { getCSRFToken } from "./csrf";
 // Szerkesztés
 export const handleEdit = (recipeId) => {
     console.log('Edit recipe with id:', recipeId);
-    // Itt megvalósíthatod a szerkesztési logikát, pl. navigáció egy szerkesztő oldalra
+    
 };
 
 // Törlés
 export const handleDelete = (recipeId, setRecipe) => {
-    console.log("setRecipe:", setRecipe);  // Debugging purpose
+    console.log("setRecipe:", setRecipe);  
     fetch(`/cookbook/recipes/${recipeId}/`, {
         method: 'DELETE',
         headers: {
@@ -18,8 +18,9 @@ export const handleDelete = (recipeId, setRecipe) => {
     .then(() => {
         if (typeof setRecipe === 'function') {
             setRecipe((prevRecipes) => prevRecipes.filter((recipe) => recipe.id !== recipeId));
+            alert("A recept sikeresen törölve!");
         } else {
-            console.error("setRecipe is not a function");
+            console.error("setRecipe nem funkció!");
         }
     })
     .catch(error => console.error("Hiba történt a törlés során:", error));

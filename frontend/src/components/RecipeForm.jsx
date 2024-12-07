@@ -121,6 +121,8 @@ const handleSubmit = (event) => {
     })
     .then((data) => {
       console.log("A recept sikeresen elkészült:", data);
+      alert("A recept sikeresen elkészült:");
+
       // Az űrlap visszaállítása a sikeres elküldés után
       setRecipeData({
         name: "",

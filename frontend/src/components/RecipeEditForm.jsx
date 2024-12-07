@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getCSRFToken } from '../utils/csrf';
 import './RecipeEditForm.css';  // Importáljuk a CSS-t
 
 
 const RecipeEditForm = () => {
     const { id } = useParams();
+    const navigate = useNavigate(); // useNavigate hook
     const [recipeData, setRecipeData] = useState({
       name: "",
       description: "",
@@ -104,7 +105,6 @@ const RecipeEditForm = () => {
             formData.append("image", recipeData.image);
         }
 
-        // JSON.stringify használata helyett az ID-kat egyetlen mezőbe adjuk hozzá
         const ingredients = selectedIngredients.map(ing => ing.id);
         ingredients.forEach(id => formData.append("ingredients", id));
 
@@ -129,8 +129,9 @@ const RecipeEditForm = () => {
             return response.json();
         })
         .then((data) => {
-            console.log("Recept sikeresen frissítve:", data);
+            console.log("Recept sikeresen frissítve.", data);
             alert("Recept sikeresen frissítve")
+            navigate(`/my-recipes`);
         })
         .catch((error) => {
             console.error("Hiba a recept frissítése során:", error.message);
