@@ -18,10 +18,13 @@ const RecipeList = () => {
 
         // Bejelentkezett felhasználó lekérdezése
         fetch('/users/api/')
-            .then(response => response.json())
-            .then(data => setCurrentUser(data.username))
-            .catch(error => console.error("Hiba a felhasználói adatok lekérdezésekor:", error));
-    }, []);
+        .then(response => response.json())
+        .then(data => {
+            console.log("Bejelentkezett felhasználó adatai:", data);
+            setCurrentUser(data);
+        })
+        .catch(error => console.error("Hiba a felhasználói adatok lekérdezésekor:", error));
+}, []);
         
     return (
         <section className='section'>

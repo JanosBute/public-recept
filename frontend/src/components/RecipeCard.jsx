@@ -6,7 +6,10 @@ const RecipeCard = (props) => {
   const { id, image, name, ingredients, preparation, author, currentUser, onDelete, onImageClick } = props;
   const navigate = useNavigate();
 
-  const isAuthor = author === currentUser;
+  const isAuthor = currentUser?.is_admin || author === currentUser?.username;
+  console.log("isAuthor:", isAuthor);
+  console.log("Author:", author, "Current User:", currentUser?.username, "Is Admin:", currentUser?.is_admin);
+
 
   // Szerkesztési útvonalra navigálás
   const handleEdit = () => {

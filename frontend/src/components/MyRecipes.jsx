@@ -18,11 +18,10 @@ const MyRecipes = () => {
     // Bejelentkezett felhasználó lekérdezése
     fetch('/users/api/')
       .then(response => response.json())
-      .then(data => setCurrentUser(data.username))
+      .then(data => setCurrentUser(data))
       .catch(error => console.error("Hiba a felhasználói adatok lekérdezésekor:", error));
   }, []);
 
-  // const handleDeleteWithState = (recipeId) => handleDelete(recipeId, setRecipes);
 
   return (
     <div>

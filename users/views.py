@@ -51,6 +51,8 @@ def logout_success(request):
 class UserStatusView(APIView):
     def get(self, request):
         if request.user.is_authenticated:
-            return Response({"is_authenticated": True, "username": request.user.username})
+            return Response({"is_authenticated": True,
+                             "username": request.user.username,
+                             "is_admin": request.user.is_staff or request.user.is_superuser})
         else:
             return Response({"is_authenticated": False})
