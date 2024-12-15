@@ -75,11 +75,14 @@
   }
   
   .mobile-close-icon {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+    display: inline-block;
+    visibility: visible;   
+    opacity: 1;           
+    font-size: 1.5rem;   
+    cursor: pointer;     
+    transition: none;      
   }
+
   
   /* Reszponzív nézet szabályok */
   @media (max-width: 768px) {
