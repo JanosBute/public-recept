@@ -3,11 +3,11 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f4f4f4; /* Világos háttér a kellemes olvasáshoz */
+    color: #333; /* Alap szövegszín */
 }
 
-/* MainPage stílus */
+/* MainPage stílus - Nincs 3D hatás */
 .main-page {
     width: 100%;
     max-width: 1200px;
@@ -17,7 +17,7 @@ body {
 
 /* Fejléc stílus */
 header {
-    background-color: #8C2B32; 
+    background-color: #8C2B32; /* Fő szín */
     color: white;
     padding: 60px 20px;
     text-align: center;
@@ -25,6 +25,15 @@ header {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: perspective(800px) rotateX(5deg);
     transition: transform 0.3s ease-in-out;
+}
+
+header:hover {
+    transform: perspective(800px) rotateX(0deg);
+}
+
+header h1 {
+    font-size: 3rem;
+    margin: 0;
 }
 
 /* Szakaszok stílusa */
@@ -37,28 +46,54 @@ section {
     transition: transform 0.3s ease-in-out;
 }
 
-/* Címsorok stílusa */
+section:hover {
+    transform: translateY(-5px);
+}
+
+/* Címsor stílus */
 h2 {
     font-size: 2rem;
-    color: #8C2B32;
+    color: #8C2B32; /* Fő szín */
     margin-bottom: 20px;
 }
 
 h3 {
     font-size: 1.4rem;
-    color: #5D5C31;
+    color: #5D5C31; /* Második szín */
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
+/* Szöveges tartalom */
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Listák */
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 20px;
+}
+
 /* 3D hatás a feature listára */
-.features ul, .additional ul {
+.features ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.additional ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.features li, .additional li {
+.features li {
     flex-basis: 48%;
     background-color: #f9f9f9;
     padding: 20px;
@@ -69,9 +104,30 @@ h3 {
     transform: perspective(800px) rotateX(5deg);
 }
 
-/* CTA szakasz */
-.cta {
+.additional li {
+    flex-basis: 48%;
     background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: perspective(800px) rotateX(5deg);
+}
+
+.features li:hover {
+    transform: translateY(-10px) rotateX(0deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.additional li:hover {
+    transform: translateY(-10px) rotateX(0deg);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);   
+}
+
+/* CTA (Call to Action) */
+.cta {
+    background-color:  #f9f9f9 ; 
     color: #555;
     padding: 40px 20px;
     text-align: center;
@@ -79,6 +135,10 @@ h3 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: perspective(800px) rotateX(5deg);
     transition: transform 0.3s ease-in-out;
+}
+
+.cta:hover {
+    transform: perspective(800px) rotateX(0deg);
 }
 
 .cta h2 {
@@ -93,24 +153,25 @@ h3 {
 
 /* Footer */
 footer {
-    text-align: center;
-    background-color: #8C2B32;
+    text-align: center; /* Középre igazítja a szöveget */
+    background-color: #8C2B32; /* Fő szín */
     color: white;
     padding: 20px;
     font-size: 1rem;
     margin-top: 40px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center; /* Középre igazítja a tartalmat vízszintesen */
+    align-items: center; /* Középre igazítja a tartalmat függőlegesen is */
+    width: 100%; /* A lábjegyzet kitölti a teljes szélességet */
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Finom árnyék a jobb megjelenés érdekében */
     position: relative;
 }
 
 footer p {
-    margin: 0;
+    margin: 0; /* Eltávolítja a margin-t a <p> elem körül */
     color: white;
 }
+
 
 /* Üdvözlő üzenet */
 .welcome-message {
