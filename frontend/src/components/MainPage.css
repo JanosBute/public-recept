@@ -1,37 +1,31 @@
-/* Alapbeállítások */
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; /* Világos háttér a kellemes olvasáshoz */
-    color: #333; /* Alap szövegszín */
-}
-
 /* MainPage stílus - Nincs 3D hatás */
 .main-page {
-    width: 100%;
+    /* width: 100%; */
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0;
+    padding: 5%;
 }
 
-/* Fejléc stílus */
-header {
-    background-color: #8C2B32; /* Fő szín */
-    color: white;
+/* Üdvözlő üzenet */
+.welcome-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #8C2B32;
+    background-color:#fff; /* Fő szín */
     padding: 60px 20px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: perspective(800px) rotateX(5deg);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out
 }
 
-header:hover {
+.welcome-message:hover {
     transform: perspective(800px) rotateX(0deg);
 }
 
-header h1 {
+.welcome-message h1 {
     font-size: 3rem;
     margin: 0;
 }
@@ -46,18 +40,18 @@ header h1 {
     transition: transform 0.3s ease-in-out;
 }
 
-section-main:hover {
+.section-main:hover {
     transform: translateY(-5px);
 }
 
 /* Címsor stílus */
-h2 {
+.section-main h2 {
     font-size: 2rem;
     color: #8C2B32; /* Fő szín */
     margin-bottom: 20px;
 }
 
-h3 {
+.section-main h3 {
     font-size: 1.4rem;
     color: #5D5C31; /* Második szín */
     margin-top: 20px;
@@ -65,36 +59,23 @@ h3 {
 }
 
 /* Szöveges tartalom */
-p {
+.section-main p {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #555;
     margin-bottom: 20px;
 }
 
-/* Listák */
-ul {
-    padding-left: 20px;
-}
-
-ul li {
-    margin-bottom: 20px;
-}
-
 /* 3D hatás a feature listára */
-.features ul {
+.section-main ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-.additional ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+
 }
 
-.features li {
-    flex-basis: 48%;
+.section-main li {
+    width: auto;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
@@ -104,51 +85,9 @@ ul li {
     transform: perspective(800px) rotateX(5deg);
 }
 
-.additional li {
-    flex-basis: 48%;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform: perspective(800px) rotateX(5deg);
-}
-
-.features li:hover {
+.section-main li:hover {
     transform: translateY(-10px) rotateX(0deg);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-.additional li:hover {
-    transform: translateY(-10px) rotateX(0deg);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);   
-}
-
-/* CTA (Call to Action) */
-.cta {
-    background-color:  #f9f9f9 ; 
-    color: #555;
-    padding: 40px 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: perspective(800px) rotateX(5deg);
-    transition: transform 0.3s ease-in-out;
-}
-
-.cta:hover {
-    transform: perspective(800px) rotateX(0deg);
-}
-
-.cta h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.cta p {
-    font-size: 1.2rem;
-    line-height: 1.6;
 }
 
 /* Footer */
@@ -172,42 +111,29 @@ footer p {
     color: white;
 }
 
-
-/* Üdvözlő üzenet */
-.welcome-message {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.5rem;
-}
-
 /* Media query a mobil eszközökhöz */
 @media (max-width: 768px) {
     /* Features kártyák elrendezése mobilon */
-    .features ul {
+    .section-main ul {
         display: block; /* A flexbox helyett blokk elrendezést alkalmazunk */
         padding-left: 0;
     }
 
-    .features li {
-        width: 100%; /* A kártyák 100%-os szélességgel rendelkeznek */
+    .section-main li {
+        width: auto; /* A kártyák 100%-os szélességgel rendelkeznek */
         margin-bottom: 20px; /* Kártyák közötti távolság */
         padding: 20px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .features li h3 {
+    .section-main li h3 {
         font-size: 1.3rem;
         margin-bottom: 12px;
     }
 
-    .features li p {
+    .section-main li p {
         font-size: 1rem;
         line-height: 1.6;
-    }
-
-    /* Más szakaszok is, ha szükséges */
-    .additional ul {
-        display: block; /* Blokk elrendezés, ha szükséges */
     }
 }

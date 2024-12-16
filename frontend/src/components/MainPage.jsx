@@ -21,15 +21,11 @@ const MainPage = () => {
         {currentUser ? (
           <h1>Üdvözöljük a főoldalon, {currentUser}!</h1>
         ) : (
-          <h1>Üdvözöljük a főoldalon!</h1>
+          <h1>Üdvözlünk a Receptkönyv-ben, a főzés új világában!</h1>
         )}
       </div>
 
-      <header>
-        <h1>Üdvözlünk a Receptkönyv-ben, a főzés új világában!</h1>
-      </header>
-
-      <section className="section-main intro" >
+      <section className="section-main" >
         <p>
           Örömmel köszöntünk téged weboldalunkon, ahol minden recept egy új
           lehetőséget kínál a konyhában. Legyen szó egy gyors hétköznapi étkezésről
@@ -39,7 +35,7 @@ const MainPage = () => {
         </p>
       </section>
 
-      <section className="section-main features">
+      <section className="section-main">
         <h2>Miért válaszd a Receptkönyvet?</h2>
         <ul>
           <li>
@@ -76,7 +72,7 @@ const MainPage = () => {
         </ul>
       </section>
 
-      <section className="section-main additional">
+      <section className="section-main">
         <h2>Ami még rád vár:</h2>
         <ul>
           <li>
@@ -90,7 +86,7 @@ const MainPage = () => {
         </ul>
       </section>
       
-      <section className="section-main cta">
+      <section className="section-main">
         <h2>Regisztrálj, és hozd létre saját receptgyűjteményed!</h2>
         <p>
           Csatlakozz a közösséghez, regisztrálj, és élvezd az összes prémium funkciót: tölts
