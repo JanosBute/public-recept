@@ -26,7 +26,7 @@ const MyRecipes = () => {
   return (
     <div>
       <h2>Saját receptek</h2>
-      <section className='section'>
+      <section className='list-section'>
         { Array.isArray(recipes) ? recipes.map(recipe => 
             <SimpleRecipeCard 
                 key={recipe.id}

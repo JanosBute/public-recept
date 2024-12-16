@@ -29,7 +29,7 @@ const MainPage = () => {
         <h1>Üdvözlünk a Receptkönyv-ben, a főzés új világában!</h1>
       </header>
 
-      <section className="intro">
+      <section className="section-main intro" >
         <p>
           Örömmel köszöntünk téged weboldalunkon, ahol minden recept egy új
           lehetőséget kínál a konyhában. Legyen szó egy gyors hétköznapi étkezésről
@@ -39,7 +39,7 @@ const MainPage = () => {
         </p>
       </section>
 
-      <section className="features">
+      <section className="section-main features">
         <h2>Miért válaszd a Receptkönyvet?</h2>
         <ul>
           <li>
@@ -76,7 +76,7 @@ const MainPage = () => {
         </ul>
       </section>
 
-      <section className="additional">
+      <section className="section-main additional">
         <h2>Ami még rád vár:</h2>
         <ul>
           <li>
@@ -90,7 +90,7 @@ const MainPage = () => {
         </ul>
       </section>
       
-      <section className="cta">
+      <section className="section-main cta">
         <h2>Regisztrálj, és hozd létre saját receptgyűjteményed!</h2>
         <p>
           Csatlakozz a közösséghez, regisztrálj, és élvezd az összes prémium funkciót: tölts

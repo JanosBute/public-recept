@@ -108,7 +108,7 @@ const RecipeEditForm = () => {
         const ingredients = selectedIngredients.map(ing => ing.id);
         ingredients.forEach(id => formData.append("ingredients", id));
 
-        // Naplózd a formData elemeit
+        // FormData elemei
         for (let [key, value] of formData.entries()) {
             console.log(key, value);
         }
