@@ -95,12 +95,6 @@ const MainPage = () => {
           világgal!
         </p>
       </section>
-
-      <footer>
-        <p>
-          &copy; 2024 Receptkönyv - Minden jog fenntartva.
-        </p>
-      </footer>
     </div>
   );
 };
