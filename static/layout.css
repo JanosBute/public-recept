@@ -38,7 +38,7 @@ header nav {
 /* Menü beállítása bal oldalra */
 /* Menü alapállapot: kívül, elhalványítva és elmosódva */
 .menu {
-    display: flex;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -50,7 +50,7 @@ header nav {
     z-index: 1000;
     flex-direction: column;
     text-align: center;
-    
+        
     /* Kezdeti animációs stílusok */
     transform: translateX(-50px); /* Kiindulási helyzet balra */
     opacity: 0; /* Áttetsző */
@@ -87,6 +87,7 @@ header nav {
 
 /* Menü megjelenítése: a helyére csúszik, láthatóvá válik és élesedik */
 .menu-toggle:checked ~ .menu {
+    display: flex;
     transform: translateX(0); /* Végső helyzet */
     opacity: 1; /* Teljesen látható */
     filter: blur(0); /* Éles */
