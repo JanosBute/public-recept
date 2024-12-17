@@ -1,19 +1,17 @@
 /* MainPage stílus - Nincs 3D hatás */
-.main-page {
-    /* width: 100%; */
-    max-width: 1200px;
+.main-page {    
     margin: 0;
-    padding: 5%;
+    padding: 0;
 }
 
 /* Üdvözlő üzenet */
 .welcome-message {
     text-align: center;
-    margin-top: 20px;
+    margin: 50px 20px;
     font-size: 1.5rem;
     color: #8C2B32;
     background-color:#fff; /* Fő szín */
-    padding: 60px 20px;
+    padding: 60px 10px;
     text-align: center;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -33,7 +31,7 @@
 /* Szakaszok stílusa */
 .section-main {
     padding: 40px 20px;
-    margin-top: 20px;
+    margin:50px 20px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -75,7 +73,6 @@
 }
 
 .section-main li {
-    width: auto;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
@@ -88,27 +85,6 @@
 .section-main li:hover {
     transform: translateY(-10px) rotateX(0deg);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Footer */
-footer {
-    text-align: center; /* Középre igazítja a szöveget */
-    background-color: #8C2B32; /* Fő szín */
-    color: white;
-    padding: 20px;
-    font-size: 1rem;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center; /* Középre igazítja a tartalmat vízszintesen */
-    align-items: center; /* Középre igazítja a tartalmat függőlegesen is */
-    width: 100%; /* A lábjegyzet kitölti a teljes szélességet */
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Finom árnyék a jobb megjelenés érdekében */
-    position: relative;
-}
-
-footer p {
-    margin: 0; /* Eltávolítja a margin-t a <p> elem körül */
-    color: white;
 }
 
 /* Media query a mobil eszközökhöz */

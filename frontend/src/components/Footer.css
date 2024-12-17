@@ -9,7 +9,7 @@ footer {
     display: flex;
     justify-content: center; /* Középre igazítja a tartalmat vízszintesen */
     align-items: center; /* Középre igazítja a tartalmat függőlegesen is */
-    width: 100%; /* A lábjegyzet kitölti a teljes szélességet */
+    /* width: 100%; A lábjegyzet kitölti a teljes szélességet */
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Finom árnyék a jobb megjelenés érdekében */
     position: relative;
 }
