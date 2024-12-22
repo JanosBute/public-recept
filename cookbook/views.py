@@ -32,7 +32,10 @@ class RecipeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = RecipeSerializer 
     
     def get_queryset(self): 
-        return Recipe.objects.filter(author=self.request.user)
+        user = self.request.user
+        if user.is_superuser or user.is_staff:
+            return Recipe.objects.all()  # Admin felhasználó minden receptet lát
+        return Recipe.objects.filter(author=user)  # Normál felhasználó csak a sajátjait látja
 
 class RecipeMyListView(generics.ListAPIView):   # A felhasználó receptjei
     serializer_class = RecipeSerializer
