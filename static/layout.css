@@ -173,12 +173,10 @@ footer {
     left: 0;
     width: 100%;
     background-color: #8C2B32;
-    color: white;
-    padding: 20px;
     text-align: center;
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    height: 30px;
 }
-
 
 footer p {
     margin: 0; /* Eltávolítja a margin-t a <p> elem körül */

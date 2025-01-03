@@ -24,8 +24,17 @@ class RecipeListCreateView(generics.ListCreateAPIView):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
 
+    def get_queryset(self):
+        queryset = Recipe.objects.all()
+        ingredient_ids = self.request.query_params.get('ingredients')
+        if ingredient_ids:
+            ingredient_ids = ingredient_ids.split(',')
+            queryset = queryset.filter(ingredients__id__in=ingredient_ids).distinct()
+        return queryset
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
 
 class RecipeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView): 
     queryset = Recipe.objects.all() 
