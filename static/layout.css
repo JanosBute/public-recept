@@ -168,19 +168,17 @@ header nav {
 }
 
 footer {
-    text-align: center; /* Középre igazítja a szöveget */
-    background-color: #8C2B32; /* Fő szín */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #8C2B32;
     color: white;
     padding: 20px;
-    font-size: 1rem;
-    margin-top: 40px;
-    display: flex;
-    justify-content: center; /* Középre igazítja a tartalmat vízszintesen */
-    align-items: center; /* Középre igazítja a tartalmat függőlegesen is */
-    /* width: 100%; A lábjegyzet kitölti a teljes szélességet */
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Finom árnyék a jobb megjelenés érdekében */
-    position: relative;
+    text-align: center;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 footer p {
     margin: 0; /* Eltávolítja a margin-t a <p> elem körül */
