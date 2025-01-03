@@ -12,6 +12,7 @@
     text-align: center;
     width: 200px;
     min-height: 300px; /* Minimális magasság */
+    height: 500px;
 }
 
 .simple-recipe-card:hover {
