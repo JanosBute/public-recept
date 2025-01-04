@@ -4,11 +4,15 @@ const IngredientFilter = ({ onFilterChange }) => {
     const [ingredients, setIngredients] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [selectAll, setSelectAll] = useState(false); // Új állapot: Mindet kiválaszt
+    // Összetevők sorba rendezése
+    const sortIngredients = (data) => {
+        return data.sort((a, b) => a.name.localeCompare(b.name, 'hu'));
+    };
 
     useEffect(() => {
         fetch('/cookbook/ingredients/')
             .then(response => response.json())
-            .then(data => setIngredients(data))
+            .then(data => setIngredients(sortIngredients(data)))
             .catch(error => console.error('Hiba az összetevők lekérdezésekor:', error));
     }, []);
 
