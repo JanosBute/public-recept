@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import "./IngredientFilter.css";
 
 const IngredientFilter = ({ onFilterChange }) => {
     const [ingredients, setIngredients] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState([]);
     const [selectAll, setSelectAll] = useState(false); // Új állapot: Mindet kiválaszt
+
     // Összetevők sorba rendezése
     const sortIngredients = (data) => {
-        return data.sort((a, b) => a.name.localeCompare(b.name, 'hu'));
-    };
+        return data.sort((a, b) => {
+            const categoryComparison = a.category.localeCompare(b.category, 'hu');
+            if (categoryComparison !== 0) {
+                return categoryComparison;
+            }
+            return a.name.localeCompare(b.name, 'hu');
+        });
+    };    
 
     useEffect(() => {
         fetch('/cookbook/ingredients/')
             .then(response => response.json())
             .then(data => setIngredients(sortIngredients(data)))
-            .catch(error => console.error('Hiba az összetevők lekérdezésekor:', error));
+            .catch(error => console.error('Hiba az összetevők lekérdezésekor: ', error));
     }, []);
 
     // Checkbox állapot frissítése egyesével
@@ -40,32 +48,45 @@ const IngredientFilter = ({ onFilterChange }) => {
         onFilterChange(selectedIngredients);
     }, [selectedIngredients, onFilterChange]);
 
+    let currentCategory = ' ';
+
     return (
         <div className="ingredient-filter">
             <h3>Szűrés összetevők alapján</h3>
             <div>
-                <label>
+                <label className = "select-all">
                     <input
                         type="checkbox"
                         checked={selectAll}
                         onChange={handleSelectAll}
                     />
-                    Mindet kiválaszt
+                    <strong>Mindet kiválaszt</strong>
                 </label>
             </div>
-            {ingredients.map((ingredient) => (
-                <div key={ingredient.id}>
-                    <label>
-                        <input
-                            type="checkbox"
-                            value={ingredient.id}
-                            checked={selectedIngredients.includes(ingredient.id)}
-                            onChange={() => handleCheckboxChange(ingredient.id)}
-                        />
-                        {ingredient.name}
-                    </label>
-                </div>
-            ))}
+            {ingredients.map((ingredient) => {
+                const categoryDisplay = ingredient.category !== currentCategory ? (
+                    <div key={`category-${ingredient.category}`} style={{ fontWeight: 'bold' }}>
+                        {ingredient.category.charAt(0).toUpperCase() + ingredient.category.slice(1)}:
+                    </div>
+                ) : (<div key={`category-${ingredient.category}`} style={{ color: 'white' }}>_</div>);
+
+                currentCategory = ingredient.category;
+
+                return (
+                    <div key={ingredient.id}>
+                        {categoryDisplay}
+                        <label>
+                            <input
+                                type="checkbox"
+                                value={ingredient.id}
+                                checked={selectedIngredients.includes(ingredient.id)}
+                                onChange={() => handleCheckboxChange(ingredient.id)}
+                            />
+                            {ingredient.name}
+                        </label>
+                    </div>
+                );
+            })}
         </div>
     );
 };

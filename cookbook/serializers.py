@@ -4,7 +4,7 @@ from .models import Ingredient, Recipe
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = ['id', 'name']  # Csak az id és a név mezők megjelenítése
+        fields = ['id', 'name', 'category']  # Csak az id és a név mezők megjelenítése
 
 class RecipeSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')

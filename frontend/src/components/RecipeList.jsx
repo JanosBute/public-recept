@@ -24,9 +24,19 @@ const RecipeList = () => {
             .then(res => res.json())
             .then((data) => {
                 console.log("Lekérdezett receptek:", data);
-                setRecipes(data);
+                setRecipes(sortRecipes(data));
             })
             .catch(error => console.error('Hiba a receptek lekérdezésekor:', error));
+    };
+
+    const sortRecipes = (data) => {
+        return data.sort((a, b) => {
+            const categoryComparison = a.category.localeCompare(b.category, 'hu');
+            if (categoryComparison !== 0) {
+                return categoryComparison;
+            }
+            return a.name.localeCompare(b.name, 'hu');
+        });
     };
 
     const fetchCurrentUser = () => {

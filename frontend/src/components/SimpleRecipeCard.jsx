@@ -14,6 +14,7 @@ const SimpleRecipeCard = (props) => {
       <div onClick={handleShowDetails} className='simple-recipe-card'>
         <img src={props.image} alt="kép" />
         <h2>{props.name}</h2>
+        <p>{"("+props.category+")"}</p>
         <p>{props.description}</p>
         <button onClick={handleShowDetails}>Részletek</button>
       </div>
@@ -24,6 +25,7 @@ const SimpleRecipeCard = (props) => {
           id={props.id}
           image={props.image}
           name={props.name}
+          category={props.category}
           description={props.description}
           ingredients={props.ingredients}
           preparation={props.preparation}

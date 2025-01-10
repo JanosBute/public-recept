@@ -1,16 +1,22 @@
 from django.shortcuts import render
-
 #
 from .models import *
 from .serializers import *
-from rest_framework import generics
-from rest_framework import permissions
+from rest_framework import generics, permissions, viewsets
 #
 from django.http import JsonResponse
-from django.db.models import Q
+from django.db.models import Q, F
 
 
 # Create your views here.
+class IngredientViewSet(viewsets.ModelViewSet):
+    queryset = Ingredient.objects.annotate(name_collated=F('name')).order_by('name_collated')
+    serializer_class = IngredientSerializer
+
+class RecipeViewSet(viewsets.ModelViewSet):
+    queryset = Recipe.objects.annotate(name_collated=F('name')).order_by('name_collated')
+    serializer_class = RecipeSerializer
+
 
 class IngredientListCreateView(generics.ListCreateAPIView):
     queryset = Ingredient.objects.all()
@@ -58,17 +64,18 @@ def search_recipes(request):
     if query:
         # Keresés a receptek nevében, vagy az összetevők nevében
         recipes = Recipe.objects.filter(
-            Q(name__icontains=query) | 
-            Q(ingredients__name__icontains=query)  # Keresés az ingredients nevén keresztül
+            Q(name__icontains=query) | Q(category__icontains=query) | Q(ingredients__name__icontains=query) |
+            Q(ingredients__category__icontains=query)
         ).distinct()
 
         recipe_list = [
             {
                 'id': recipe.id,
                 'name': recipe.name,
+                'category': recipe.category,
                 'description': recipe.description,
                 'image': recipe.image.url,
-                'ingredients': [{'id': ing.id, 'name': ing.name} for ing in recipe.ingredients.all()],
+                'ingredients': [{'id': ing.id, 'name': ing.name, 'category': ing.category} for ing in recipe.ingredients.all()],
                 'preparation': recipe.preparation
             }
             for recipe in recipes        

@@ -1,0 +1,14 @@
+.ingredient-filter {
+    margin-bottom: 10px;
+}
+
+.category-label {
+    margin-top: 5px;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+.select-all {
+    width: 250px;
+    max-width: 100%;
+}
